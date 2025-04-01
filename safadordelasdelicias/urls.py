@@ -3,5 +3,8 @@ from django.urls import path
 from safadordelasdelicias.views import *
 
 urlpatterns = [
-    path('home/', home , name='home_page'),
+    path('', go_home, name='home'),
+    path('home/', go_home , name='home_page'),
+    path('templo/', go_templo, name='templo_page'),
+    path('carta/', cargar_carta, name='carta'),
 ]
