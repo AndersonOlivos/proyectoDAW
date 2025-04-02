@@ -16,3 +16,6 @@ def cargar_carta(request):
     lista_productos = Productos.objects.all()
 
     return render(request, 'carta.html', {'lista_productos': lista_productos})
+
+def go_mesas(request):
+    return render(request, 'mesas.html')
