@@ -1,0 +1,11 @@
+:root,[data-bs-theme=light]{
+    --bs-naranja-primario:#FF8000;
+    --bs-naranja-secundario:#BE7C4D;
+    --bs-marron-oscuro:#400406;
+    --bs-blanco-roto:#fbf5e7 ;
+}
+
+.fondo-blanco-roto{
+    background-color: var(--bs-blanco-roto);
+}
+
