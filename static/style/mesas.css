@@ -7,8 +7,14 @@ body{
 .parte-arriba{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 50px;
 
+}
+
+.parte-arriba p{
+    font-size: 20px;
+    color: var(--bs-naranja-secundario);
 }
 
 
@@ -60,6 +66,15 @@ body{
     border-radius: 25px;
     font-size: 20px;
     width: 120px;
+}
+
+.btn-cocinero{
+    position: absolute;
+    right: 50px;
+    bottom:30px;
+    background-color: var(--bs-naranja-secundario);
+    padding: 10px;
+    border-radius: 50%;
 }
 
 
