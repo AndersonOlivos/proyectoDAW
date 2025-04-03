@@ -23,6 +23,7 @@ body{
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    gap: 1rem;
     width: 100%;
 }
 
@@ -44,16 +45,18 @@ body{
     align-items: center;
     justify-content: center;
     font-size: 50px;
-    box-shadow: 0px 6px 11px -1px #00000036 ;
+    box-shadow: 0px 6px 11px -1px #00000036;
+    cursor: pointer;
 }
 
 .mesa-disponible-h3{
-    background: radial-gradient(circle, hsl(124.4deg 31.46% 58.55%) 0%, hsl(127deg 30% 47.47%) 100%);
+    background: radial-gradient(circle, hsl(124.4deg 27.69% 52.39%) 0%, hsl(127deg 38.39% 36%) 100%);
     color: white;
 }
 
 .mesa-encurso-h3{
-    background-color: lightcoral;
+    background: rgb(255,104,22);
+    background: radial-gradient(circle, rgba(255,104,22,1) 0%, rgb(207, 86, 22) 100%);
     color: whitesmoke;
 }
 
@@ -73,18 +76,18 @@ body{
     justify-self: center;
     color: whitesmoke;
     border-radius: 25px;
-    font-size: 18px;
+    font-size: 15px;
     width: fit-content;
     padding: 9px 12px 5px 12px;
     box-shadow: 0px 6px 11px -1px #00000036 ;
 }
 
 .card-text-disponible{
-    background-color: darkseagreen;
+    background-color: #87bf87;
 }
 
 .card-text-encurso{
-    background-color: orangered;
+    background-color: coral;
 }
 
 .btn-cocinero{
@@ -92,8 +95,18 @@ body{
     right: 50px;
     bottom:30px;
     background-color: var(--bs-naranja-secundario);
-    padding: 10px;
     border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn-cocinero>img{
+    width: 35px;
 }
 
 

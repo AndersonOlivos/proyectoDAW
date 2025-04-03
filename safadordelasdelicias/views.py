@@ -19,3 +19,6 @@ def cargar_carta(request):
 
 def go_mesas(request):
     return render(request, 'mesas.html')
+
+def custom_404(request, exception=None):
+    return render(request, '404.html', status=404)

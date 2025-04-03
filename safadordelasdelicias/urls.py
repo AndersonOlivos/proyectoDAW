@@ -1,4 +1,5 @@
-from django.urls import path
+from django.conf.urls import handler404
+from django.urls import path, re_path
 
 from safadordelasdelicias.views import *
 
@@ -9,3 +10,5 @@ urlpatterns = [
     path('carta/', cargar_carta, name='carta'),
     path('mesas/', go_mesas, name='mesas'),
 ]
+
+handler404 = custom_404

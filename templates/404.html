@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SAFADOR</title>
+    <link rel="stylesheet" href="{% static 'style/global.css' %}">
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            gap: 1rem;
+        }
+
+        h1, h3{margin: 0; color: var(--bs-marron-oscuro)}
+
+        a{color: #FF8000}
+
+        img{padding-left: 55px; width: 400px}
+
+    </style>
+</head>
+<body>
+    <h1>Vaya...</h1>
+    <h3>Parece que te has perdido</h3>
+    <a href="{% url 'home' %}">Volver a la pagina de inicio</a>
+    <img src="{% static 'image/lost.gif' %}">
+</body>
+</html>
