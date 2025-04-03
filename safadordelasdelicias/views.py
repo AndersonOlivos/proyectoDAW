@@ -22,3 +22,5 @@ def go_mesas(request):
 
 def custom_404(request, exception=None):
     return render(request, '404.html', status=404)
+def go_mesa(request):
+    return render(request, 'mesa.html')

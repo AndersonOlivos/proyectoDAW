@@ -9,6 +9,7 @@ urlpatterns = [
     path('templo/', go_templo, name='templo_page'),
     path('carta/', cargar_carta, name='carta'),
     path('mesas/', go_mesas, name='mesas'),
+    path('mesa/',go_mesa, name='mesa'),
 ]
 
 handler404 = custom_404
