@@ -1,10 +1,50 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>SAFADOR - Mesa</title>
+    <link rel="stylesheet" href="{% static 'style/global.css' %}">
+    <link rel="stylesheet" href="{% static 'style/mesa.css' %}">
 </head>
 <body>
-
+    <div class="contenedor">
+        <div class="header-mesa">
+            <a class="volver-mesas" href="">
+                <img src="" alt="">
+                <p>Volver a mesas</p>
+            </a>
+            <p>Mesa 1</p>
+        </div>
+        <div id="body-mesa">
+            <div id="contenedor-platos-bebidas">
+                <div class="div-botones-platos-bebidas">
+                    <button class="btn-activo">
+                        Platos
+                    </button>
+                    <button>
+                        Bebidas
+                    </button>
+                </div>
+                <div class="scroll-contenedor">
+                    <div class="contenedor-cards-tipo-comida">
+                        <div class="card-tipo-comida">Entrantes</div>
+                        <div class="card-tipo-comida">Revueltos y verduras</div>
+                        <div class="card-tipo-comida">Platos</div>
+                    </div>
+                </div>
+            </div>
+            <div id="contenedor-pedido-actual">
+                <div class="header-pedido-actual">
+                    <h3>Pedido Actual</h3>
+                    <div class="div-carrito-numero">
+                        <img src="{% static 'image/carrito-blanco.png'%}" alt="carrito">
+                        <p>2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

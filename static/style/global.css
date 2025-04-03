@@ -1,8 +1,10 @@
 :root,[data-bs-theme=light]{
-    --bs-naranja-primario:#FF8000;
+    --bs-naranja-primario:#ff6f00;
     --bs-naranja-secundario:#BE7C4D;
     --bs-marron-oscuro:#400406;
-    --bs-blanco-roto:#fbf5e7 ;
+    --bs-blanco-roto:#f9efe7 ;
+    --bs-blanco-roto-hover: #f8dccf;
+    --bs-marron-claro: #40040634;
 }
 
 @font-face {
