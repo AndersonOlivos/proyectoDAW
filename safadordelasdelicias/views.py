@@ -24,3 +24,9 @@ def custom_404(request, exception=None):
     return render(request, '404.html', status=404)
 def go_mesa(request):
     return render(request, 'mesa.html')
+
+def go_cocina(request):
+    return render(request, 'cocina.html')
+
+def go_carta(request):
+    return render(request, 'carta.html')
