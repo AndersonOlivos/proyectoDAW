@@ -1,10 +1,10 @@
-{% load static %}
+ {% load static %}
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>SAFADOR - Mesa</title>
+    <title>SAFADOR - Mesa 1</title>
     <link rel="stylesheet" href="{% static 'style/global.css' %}">
     <link rel="stylesheet" href="{% static 'style/mesa.css' %}">
 </head>
@@ -12,7 +12,7 @@
     <div class="contenedor">
         <div class="header-mesa">
             <a class="volver-mesas" href="">
-                <img src="" alt="">
+                <img class="small-img" src="{% static 'image/back-marron-oscuro.png' %}" alt="atras">
                 <p>Volver a mesas</p>
             </a>
             <p>Mesa 1</p>
@@ -21,17 +21,99 @@
             <div id="contenedor-platos-bebidas">
                 <div class="div-botones-platos-bebidas">
                     <button class="btn-activo">
-                        Platos
+                        <img src="{% static 'image/platos-blanco.png' %}" alt="Platos">
+                        <p>Platos</p>
                     </button>
                     <button>
-                        Bebidas
+                        <img src="{% static 'image/bebidas-marron.png' %}" alt="Platos">
+                        <p>Bebidas</p>
                     </button>
                 </div>
-                <div class="scroll-contenedor">
+                <div class="scroll-contenedor-comidas">
                     <div class="contenedor-cards-tipo-comida">
                         <div class="card-tipo-comida">Entrantes</div>
                         <div class="card-tipo-comida">Revueltos y verduras</div>
                         <div class="card-tipo-comida">Platos</div>
+                    </div>
+                    <div class="contenedor-cards-comidas">
+                        <div class="card-comida">
+                            <div class="card-comida-img">
+
+                            </div>
+                            <div class="card-comida-info">
+                                <p class="card-comida-nombre">Paella Valenciana</p>
+                                <p class="card-comida-descripcion">Plato de arroz tradicional con pollo, conejo y verduras.</p>
+                                <div>
+                                    <p class="card-comida-precio">18.95€</p>
+                                    <button class="card-comida-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-comida">
+                            <div class="card-comida-img">
+
+                            </div>
+                            <div class="card-comida-info">
+                                <p class="card-comida-nombre">Paella Valenciana</p>
+                                <p class="card-comida-descripcion">Plato de arroz tradicional con pollo, conejo y verduras.</p>
+                                <div>
+                                    <p class="card-comida-precio">18.95€</p>
+                                    <button class="card-comida-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-comida">
+                            <div class="card-comida-img">
+
+                            </div>
+                            <div class="card-comida-info">
+                                <p class="card-comida-nombre">Paella Valenciana</p>
+                                <p class="card-comida-descripcion">Plato de arroz tradicional con pollo, conejo y verduras.</p>
+                                <div>
+                                    <p class="card-comida-precio">18.95€</p>
+                                    <button class="card-comida-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-comida">
+                            <div class="card-comida-img">
+
+                            </div>
+                            <div class="card-comida-info">
+                                <p class="card-comida-nombre">Paella Valenciana</p>
+                                <p class="card-comida-descripcion">Plato de arroz tradicional con pollo, conejo y verduras.</p>
+                                <div>
+                                    <p class="card-comida-precio">18.95€</p>
+                                    <button class="card-comida-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-comida">
+                            <div class="card-comida-img">
+
+                            </div>
+                            <div class="card-comida-info">
+                                <p class="card-comida-nombre">Paella Valenciana</p>
+                                <p class="card-comida-descripcion">Plato de arroz tradicional con pollo, conejo y verduras.</p>
+                                <div>
+                                    <p class="card-comida-precio">18.95€</p>
+                                    <button class="card-comida-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-comida">
+                            <div class="card-comida-img">
+
+                            </div>
+                            <div class="card-comida-info">
+                                <p class="card-comida-nombre">Paella Valenciana</p>
+                                <p class="card-comida-descripcion">Plato de arroz tradicional con pollo, conejo y verduras.</p>
+                                <div>
+                                    <p class="card-comida-precio">18.95€</p>
+                                    <button class="card-comida-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,8 +121,138 @@
                 <div class="header-pedido-actual">
                     <h3>Pedido Actual</h3>
                     <div class="div-carrito-numero">
-                        <img src="{% static 'image/carrito-blanco.png'%}" alt="carrito">
+                        <img class="" src="{% static 'image/carrito-blanco.png' %}" alt="carrito">
                         <p>2</p>
+                    </div>
+                </div>
+                <div class="scroll-contenedor-carrito">
+                    <div class="contenedor-pedidos-carrito">
+                        <div class="card-pedido-carrito">
+                            <p class="card-pedido-nombre">Tortilla de patatas</p>
+                            <div class="card-pedido-cantidades">
+                                <p class="card-pedido-precio">8.50€</p>
+                                <div class="card-pedido-carrito-cantidades">
+                                    <button>-</button>
+                                    <p class="card-pedido-carrito-cantidad">3</p>
+                                    <button>+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="card-pedido-subtotal">Subtotal</p>
+                                <p class="card-pedido-subtotal-precio">25.50€</p>
+                            </div>
+                        </div>
+                        <div class="card-pedido-carrito">
+                            <p class="card-pedido-nombre">Tortilla de patatas</p>
+                            <div class="card-pedido-cantidades">
+                                <p class="card-pedido-precio">8.50€</p>
+                                <div class="card-pedido-carrito-cantidades">
+                                    <button>-</button>
+                                    <p class="card-pedido-carrito-cantidad">3</p>
+                                    <button>+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="card-pedido-subtotal">Subtotal</p>
+                                <p class="card-pedido-subtotal-precio">25.50€</p>
+                            </div>
+                        </div>
+                        <div class="card-pedido-carrito">
+                            <p class="card-pedido-nombre">Tortilla de patatas</p>
+                            <div class="card-pedido-cantidades">
+                                <p class="card-pedido-precio">8.50€</p>
+                                <div class="card-pedido-carrito-cantidades">
+                                    <button>-</button>
+                                    <p class="card-pedido-carrito-cantidad">3</p>
+                                    <button>+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="card-pedido-subtotal">Subtotal</p>
+                                <p class="card-pedido-subtotal-precio">25.50€</p>
+                            </div>
+                        </div>
+                        <div class="card-pedido-carrito">
+                            <p class="card-pedido-nombre">Tortilla de patatas</p>
+                            <div class="card-pedido-cantidades">
+                                <p class="card-pedido-precio">8.50€</p>
+                                <div class="card-pedido-carrito-cantidades">
+                                    <button>-</button>
+                                    <p class="card-pedido-carrito-cantidad">3</p>
+                                    <button>+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="card-pedido-subtotal">Subtotal</p>
+                                <p class="card-pedido-subtotal-precio">25.50€</p>
+                            </div>
+                        </div>
+                        <div class="card-pedido-carrito">
+                            <p class="card-pedido-nombre">Tortilla de patatas</p>
+                            <div class="card-pedido-cantidades">
+                                <p class="card-pedido-precio">8.50€</p>
+                                <div class="card-pedido-carrito-cantidades">
+                                    <button>-</button>
+                                    <p class="card-pedido-carrito-cantidad">3</p>
+                                    <button>+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="card-pedido-subtotal">Subtotal</p>
+                                <p class="card-pedido-subtotal-precio">25.50€</p>
+                            </div>
+                        </div>
+                        <div class="card-pedido-carrito">
+                            <p class="card-pedido-nombre">Tortilla de patatas</p>
+                            <div class="card-pedido-cantidades">
+                                <p class="card-pedido-precio">8.50€</p>
+                                <div class="card-pedido-carrito-cantidades">
+                                    <button>-</button>
+                                    <p class="card-pedido-carrito-cantidad">3</p>
+                                    <button>+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="card-pedido-subtotal">Subtotal</p>
+                                <p class="card-pedido-subtotal-precio">25.50€</p>
+                            </div>
+                        </div>
+                        <div class="card-pedido-carrito">
+                            <p class="card-pedido-nombre">Tortilla de patatas</p>
+                            <div class="card-pedido-cantidades">
+                                <p class="card-pedido-precio">8.50€</p>
+                                <div class="card-pedido-carrito-cantidades">
+                                    <button>-</button>
+                                    <p class="card-pedido-carrito-cantidad">3</p>
+                                    <button>+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="card-pedido-subtotal">Subtotal</p>
+                                <p class="card-pedido-subtotal-precio">25.50€</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="foot-pedido-actual">
+                    <div class="subtotal-iva">
+                        <div>
+                            <p>Subtotal</p>
+                            <p>0.00€</p>
+                        </div>
+                        <div>
+                            <p>IVA (10%)</p>
+                            <p>0.00€</p>
+                        </div>
+                    </div>
+                    <div class="total">
+                        <p>Total</p>
+                        <p>0.00€</p>
+                    </div>
+                    <div class="foot-botones">
+                        <button class="btn-limpiar">Limpiar</button>
+                        <button class="btn-enviar">Enviar a cocina</button>
+                        <button class="btn-pedir-cuenta">Pedir Cuenta</button>
                     </div>
                 </div>
             </div>
