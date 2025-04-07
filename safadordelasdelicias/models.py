@@ -10,3 +10,10 @@ class Productos(models.Model):
 
     def __str__(self):
         return self.nombre
+
+class Mesa(models.Model):
+    id = models.IntegerField(primary_key=True)
+    estado = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.estado

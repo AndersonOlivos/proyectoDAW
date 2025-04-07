@@ -11,11 +11,11 @@
 <body>
     <div class="contenedor">
         <div class="header-mesa">
-            <a class="volver-mesas" href="">
+            <a class="volver-mesas" href="{% url 'mesas' %}">
                 <img class="small-img" src="{% static 'image/back-marron-oscuro.png' %}" alt="atras">
                 <p>Volver a mesas</p>
             </a>
-            <p>Mesa 1</p>
+            <p>Mesa {{ mesa.id }}</p>
         </div>
         <div id="body-mesa">
             <div id="contenedor-platos-bebidas">
@@ -258,5 +258,7 @@
             </div>
         </div>
     </div>
+
+    <footer>Esto es el footer</footer>
 </body>
 </html>

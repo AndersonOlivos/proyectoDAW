@@ -8,8 +8,8 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
-
+    padding: 1rem;
+    margin-bottom: 2rem;
 }
 
 .parte-arriba p{
@@ -23,8 +23,10 @@ body{
     flex-direction: column;
     align-content: center;
     justify-content: center;
-    gap: 1rem;
+    justify-self: center;
+    gap: 2rem;
     width: 100%;
+    max-width: 1520px;
 }
 
 .card{
@@ -35,8 +37,17 @@ body{
     width: 250px;
 }
 
-.card-body h3{
-    padding: 20px;
+.card-body{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.card-body a{
+    padding-top: 11px;
     border-radius: 1000px;
     width: 150px;
     height: 150px;
@@ -47,6 +58,7 @@ body{
     font-size: 50px;
     box-shadow: 0px 6px 11px -1px #00000036;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .mesa-disponible-h3{
@@ -60,6 +72,10 @@ body{
     color: whitesmoke;
 }
 
+.mesa-disponible-h3:hover, .mesa-encurso-h3:hover{
+    background: rgba(209, 138, 94, 0.72);
+}
+
 .card-title{
     display: flex;
     align-items: center;
@@ -69,7 +85,6 @@ body{
 }
 
 .card-text{
-    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
