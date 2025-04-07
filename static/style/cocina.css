@@ -1,0 +1,102 @@
+body{
+    background-color: var(--bs-blanco-roto);
+}
+
+.contenedor{
+    margin-top: 15px;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: sans-serif;
+}
+
+.nabvar-cocina{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    color: var(--bs-marron-oscuro);
+}
+
+.nombre-restaurante{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 520px;
+
+
+}
+
+.comandas{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-comanda{
+    border: 2px solid;
+    border-color: var(--bs-marron-oscuro);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: white;
+    width: 400px;
+    margin: 30px;
+}
+
+.header-comanda{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.header-comanda-nombre{
+    font-size:25px ;
+}
+
+.header-comanda-mesa{
+    background-color: var(--bs-marron-claro);
+    padding: 2px;
+    border: 1px solid;
+    border-radius: 25px;
+    border-color: var(--bs-marron-oscuro);
+    padding: 5px;
+    color: var(--bs-marron-oscuro);
+}
+
+.comanda-tiempo{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.comanda-tiempo-img img{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+.comanda-descripcion{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.comanda-boton-preparado{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.comanda-boton-preparado button{
+    height: 50px;
+    background-color: green;
+    border-radius: 10px;
+    color: white;
+}
