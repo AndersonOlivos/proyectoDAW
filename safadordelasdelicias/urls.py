@@ -12,6 +12,8 @@ urlpatterns = [
     path('mesas/mesa/',go_mesa, name='mesa'),
     path('mesas/mesa/cocina', go_cocina, name='cocina'),
     path('carta/', go_carta, name='carta'),
+
+    path('login/', go_login, name='login'),
 ]
 
 handler404 = custom_404

@@ -30,3 +30,6 @@ def go_cocina(request):
 
 def go_carta(request):
     return render(request, 'carta.html')
+
+def go_login(request):
+    return render(request, 'login.html')
