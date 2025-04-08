@@ -3,22 +3,22 @@ body{
 }
 
 .contenedor{
-    margin-top: 15px;
-    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
-    font-family: sans-serif;
+    gap: 2rem;
+    padding: 1rem;
 }
 
 .nabvar-cocina{
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
     color: var(--bs-marron-oscuro);
 }
 
@@ -26,33 +26,55 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 520px;
+    gap: 0.5rem;
+}
 
-
+.fecha{
+    font-size: 20px;
+    margin-top: 4px;
+    color: var(--bs-naranja-secundario);
 }
 
 .comandas{
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
 }
 
 .card-comanda{
-    border: 2px solid;
-    border-color: var(--bs-marron-oscuro);
-    border-radius: 15px;
     display: flex;
     flex-direction: column;
-    padding: 15px;
-    background-color: white;
-    width: 400px;
-    margin: 30px;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+
+    width: fit-content;
+    min-width: 400px;
+    height: fit-content;
+
+    background-color: var(--bs-blanco-roto);
+    color: var(--bs-marron-oscuro);
+
+    border: 1px solid rgb(245, 197, 178);
+    border-radius: 10px;
+
+    text-align: center;
+    font-size: 15px;
+    box-shadow: 0 3px 12px -9px black;
+    padding: 1.5rem;
+    gap: 1rem;
+}
+
+.card-comanda>div{
+    width: 100%;
 }
 
 .header-comanda{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
 }
 
 .header-comanda-nombre{
@@ -60,43 +82,55 @@ body{
 }
 
 .header-comanda-mesa{
-    background-color: var(--bs-marron-claro);
-    padding: 2px;
-    border: 1px solid;
-    border-radius: 25px;
-    border-color: var(--bs-marron-oscuro);
-    padding: 5px;
-    color: var(--bs-marron-oscuro);
+    background-color: var(--bs-naranja-primario);
+    color: white;
+    border-radius: 10px;
+    padding: 7px;
+    margin: 0;
 }
 
 .comanda-tiempo{
     display: flex;
+    flex-direction: row;
     align-items: center;
-    margin-top: 10px;
+    justify-content: flex-start;
+    gap: 0.5rem;
 }
 .comanda-tiempo-img img{
-    width: 24px;
-    height: 24px;
-    margin-right: 5px;
+    width: 20px;
+    height: 20px;
 }
 
 .comanda-descripcion{
     display: flex;
+    flex-direction: row;
     align-items: center;
-    margin-top: 10px;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.comanda-descripcion-cantidad{
+    color: var(--bs-naranja-primario);
+    font-weight: bold;
+    font-size: 40px;
 }
 
 .comanda-boton-preparado{
-    margin-top: 20px;
-    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.comanda-boton-preparado button{
+.comanda-boton-preparado>button{
     height: 50px;
     background-color: green;
     border-radius: 10px;
+    border: 0;
     color: white;
+    font-size: large;
+    cursor: pointer;
+}
+
+.comanda-boton-preparado>button:hover{
+    background-color: darkgreen;
 }

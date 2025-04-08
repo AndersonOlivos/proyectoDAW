@@ -26,7 +26,7 @@ def custom_404(request, exception=None):
     return render(request, '404.html', status=404)
 
 def go_mesa(request, id):
-    mesa = Mesa.objects.get(id=id)
+    mesa = get_object_or_404(Mesa, id=id)
     return render(request, 'mesa.html', {'mesa': mesa})
 
 
