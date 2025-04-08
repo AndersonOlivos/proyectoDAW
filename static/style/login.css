@@ -1,3 +1,25 @@
+.nabvar-cocina{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1000px;
+    color: var(--bs-marron-oscuro);
+}
+
+.nombre-restaurante{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.fecha{
+    font-size: 20px;
+    margin-top: 4px;
+    color: var(--bs-naranja-secundario);
+}
+
 body{
     background-color: var(--bs-blanco-roto);
     display: flex;
