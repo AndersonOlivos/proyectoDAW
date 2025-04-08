@@ -1,6 +1,110 @@
-.img_ganso{
-    max-width: 100% !important;
-    max-height: 100% !important;
-    height: 100% !important;
-    width: 100% !important;
+body{
+    background-color: var(--bs-blanco-roto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height:100%;
+
 }
+
+.img_ganso{
+    max-width: 500px;
+    max-height: 500px;
+    overflow: hidden;
+    flex: 1;
+}
+
+.contenedor-login{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    background-color: white;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 100px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.66);
+
+}
+
+.registro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    flex: 1;
+    gap: 3rem;
+
+}
+
+.registro h1{
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--bs-naranja-primario);
+}
+.cajas-texto{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.caja-texto{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.caja-texto label{
+    font-size: 20px;
+    color: var(--bs-marron-oscuro);
+}
+
+.caja-texto input{
+    border-radius: 8px;
+    border: 1px solid var(--bs-marron-claro);
+    width: 100%;
+    height: 35px;
+    font-size: 20px;
+}
+
+.boton-acceder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.boton-acceder button{
+    background-color: #ff6f00;
+    border: none;
+    border-radius: 8px ;
+    color: var(--bs-blanco-roto);
+    width: 100%;
+    height: 35px;
+}
+@media screen and (max-width: 800px){
+    .contenedor-login{
+        margin: 0 !important;
+        border-radius: 0 !important;
+    }
+}
+@media screen and (max-width: 1020px){
+    .contenedor-login{
+        flex-direction: column;
+    }
+
+    .img_ganso{
+        max-width: none;
+        max-height: 250px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .img_ganso img{
+        width: 1000px;
+    }
+}
+
+
