@@ -1,5 +1,16 @@
 from django.db import models
 
+class EstadoMesa(models.TextChoices):
+    disponible = 'Disponible'
+    en_curso = 'En Curso'
+
+class EstadoPedido(models.TextChoices):
+    pendiente = 'Pendiente'
+    en_proceso = 'En Proceso'
+    completado = 'Completado'
+    cancelado = 'Cancelado'
+    en_retraso = 'En Retraso'
+
 
 class Productos(models.Model):
     nombre = models.CharField(max_length=100)
@@ -16,28 +27,17 @@ class Productos(models.Model):
 
 
 class Mesa(models.Model):
-    ESTADOS_MESA = [
-        ('libre', 'Libre'),
-        ('ocupada', 'Ocupada'),
-        ('reservada', 'Reservada'),
-    ]
 
-    estado = models.CharField(max_length=20, choices=ESTADOS_MESA, default='libre')
+    estado = models.CharField(max_length=20, choices=EstadoMesa, default=EstadoMesa.disponible)
 
     def __str__(self):
         return f"Mesa {self.id} - {self.estado}"
 
 
 class Pedido(models.Model):
-    ESTADOS_PEDIDO = [
-        ('pendiente', 'Pendiente'),
-        ('en_proceso', 'En proceso'),
-        ('completado', 'Completado'),
-        ('cancelado', 'Cancelado'),
-    ]
 
-    id_mesa = models.ForeignKey(Mesa, on_delete=models.RESTRICT)
-    estado = models.CharField(max_length=20, choices=ESTADOS_PEDIDO, default='pendiente')
+    id_mesa = models.ForeignKey(Mesa, on_delete=models.DO_NOTHING)
+    estado = models.CharField(max_length=20, choices=EstadoPedido, default=EstadoPedido.pendiente)
     fecha = models.DateTimeField()
 
     def __str__(self):
@@ -45,7 +45,7 @@ class Pedido(models.Model):
 
 
 class LineaPedido(models.Model):
-    id_pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='lineas')
+    id_pedido = models.ForeignKey(Pedido, on_delete=models.DO_NOTHING, related_name='lineas')
     id_producto = models.ForeignKey(Productos, on_delete=models.RESTRICT)
     cantidad_producto = models.PositiveIntegerField(default=1)
 

@@ -136,6 +136,7 @@
     border: 0;
     font-weight: bold;
     font-size: 15px;
+    text-transform: capitalize;
 }
 
 .card-tipo-comida:hover{

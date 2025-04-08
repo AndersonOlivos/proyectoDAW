@@ -20,20 +20,17 @@
         <div id="body-mesa">
             <div id="contenedor-platos-bebidas">
                 <div class="div-botones-platos-bebidas">
-                    <button class="btn-activo">
+                    <button id="btn_mostrar_comidas" onclick="mostrar_platos()">
                         <img src="{% static 'image/platos-blanco.png' %}" alt="Platos">
                         <p>Platos</p>
                     </button>
-                    <button>
+                    <button id="btn_mostrar_bebidas" onclick="mostrar_bebidas()">
                         <img src="{% static 'image/bebidas-marron.png' %}" alt="Platos">
                         <p>Bebidas</p>
                     </button>
                 </div>
                 <div class="scroll-contenedor-comidas">
                     <div class="contenedor-cards-tipo-comida">
-                        <div class="card-tipo-comida">Entrantes</div>
-                        <div class="card-tipo-comida">Revueltos y verduras</div>
-                        <div class="card-tipo-comida">Platos</div>
                     </div>
                     <div class="contenedor-cards-comidas">
                         <div class="card-comida">
@@ -49,71 +46,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-comida">
-                            <div class="card-comida-img">
 
-                            </div>
-                            <div class="card-comida-info">
-                                <p class="card-comida-nombre">Paella Valenciana</p>
-                                <p class="card-comida-descripcion">Plato de arroz tradicional con pollo, conejo y verduras.</p>
-                                <div>
-                                    <p class="card-comida-precio">18.95€</p>
-                                    <button class="card-comida-btn">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-comida">
-                            <div class="card-comida-img">
-
-                            </div>
-                            <div class="card-comida-info">
-                                <p class="card-comida-nombre">Paella Valenciana</p>
-                                <p class="card-comida-descripcion">Plato de arroz tradicional con pollo, conejo y verduras.</p>
-                                <div>
-                                    <p class="card-comida-precio">18.95€</p>
-                                    <button class="card-comida-btn">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-comida">
-                            <div class="card-comida-img">
-
-                            </div>
-                            <div class="card-comida-info">
-                                <p class="card-comida-nombre">Paella Valenciana</p>
-                                <p class="card-comida-descripcion">Plato de arroz tradicional con pollo, conejo y verduras.</p>
-                                <div>
-                                    <p class="card-comida-precio">18.95€</p>
-                                    <button class="card-comida-btn">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-comida">
-                            <div class="card-comida-img">
-
-                            </div>
-                            <div class="card-comida-info">
-                                <p class="card-comida-nombre">Paella Valenciana</p>
-                                <p class="card-comida-descripcion">Plato de arroz tradicional con pollo, conejo y verduras.</p>
-                                <div>
-                                    <p class="card-comida-precio">18.95€</p>
-                                    <button class="card-comida-btn">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-comida">
-                            <div class="card-comida-img">
-
-                            </div>
-                            <div class="card-comida-info">
-                                <p class="card-comida-nombre">Paella Valenciana</p>
-                                <p class="card-comida-descripcion">Plato de arroz tradicional con pollo, conejo y verduras.</p>
-                                <div>
-                                    <p class="card-comida-precio">18.95€</p>
-                                    <button class="card-comida-btn">+</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -258,7 +191,6 @@
             </div>
         </div>
     </div>
-
-    <footer>Esto es el footer</footer>
+<script src="{% static 'js/mesa.js' %}"></script>
 </body>
 </html>
