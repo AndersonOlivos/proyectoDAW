@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-from safadordelasdelicias.models import Productos
+from safadordelasdelicias.models import Productos, Mesa
 
 
 # Create your views here.
@@ -18,12 +18,17 @@ def cargar_carta(request):
     return render(request, 'carta.html', {'lista_productos': lista_productos})
 
 def go_mesas(request):
-    return render(request, 'mesas.html')
+    lista_mesas = Mesa.objects.all()
+    return render(request, 'mesas.html', {'lista_mesas': lista_mesas})
+
 
 def custom_404(request, exception=None):
     return render(request, '404.html', status=404)
-def go_mesa(request):
-    return render(request, 'mesa.html')
+
+def go_mesa(request, id):
+    mesa = Mesa.objects.get(id=id)
+    return render(request, 'mesa.html', {'mesa': mesa})
+
 
 def go_cocina(request):
     return render(request, 'cocina.html')

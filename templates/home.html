@@ -1,17 +1,34 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-<a href="{% url 'mesas' %}">MESAS</a>
-<a href="{% url 'mesa' %}">MESA</a>
-<a href="{% url 'cocina' %}">COCINA</a>
-<a href="{% url 'carta' %}">CARTA</a>
-<a href="{% url 'login' %}">Login</a>
+{% block title %}Safador De Las Delicias - Inicio{% endblock %}
 
-</body>
-</html>
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'style/home.css' %}">
+{% endblock %}
+
+{% block enlaces %}
+
+    <a href="{% url 'mesas' %}">MESAS</a>
+    <a href="{% url 'mesa' %}">MESA</a>
+    <a href="{% url 'cocina' %}">COCINA</a>
+    <a href="{% url 'carta' %}">CARTA</a>
+    <a href="{% url 'login' %}">Login</a>
+
+{% endblock %}
+
+{% block  content%}
+	<div id="hero">
+        <h1>Hero</h1>
+    </div>
+    <div id="carta">
+        <h1>Carta</h1>
+    </div>
+    <div id="valoraciones">
+        <h1>Valoraciones</h1>
+    </div>
+    <div id="contacto">
+        <h1>Contacto</h1>
+    </div>
+{% endblock %}

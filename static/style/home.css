@@ -1,0 +1,24 @@
+.logo{
+    height: 40px;
+}
+
+.navbar{
+    --bs-navbar-toggler-focus-width: 0;
+}
+
+.navbar-dark{
+    --bs-navbar-toggler-border-color: none;
+}
+
+
+main{
+    min-height: 70vh;
+    background-color: #BE7C4D;
+    color: white;
+}
+
+footer{
+    background-color: black;
+    color: white;
+    min-height: 30vh;
+}
