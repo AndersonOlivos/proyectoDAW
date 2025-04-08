@@ -119,7 +119,7 @@ h1{
 }
 
 .btn-cocinero{
-    position: absolute;
+    position: fixed;
     right: 50px;
     bottom:30px;
     background-color: var(--bs-naranja-secundario);
