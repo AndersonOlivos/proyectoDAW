@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
 from safadordelasdelicias.models import Productos, Mesa
@@ -38,3 +39,27 @@ def go_carta(request):
 
 def go_login(request):
     return render(request, 'login.html')
+
+def tipos_categoria_comidas(request):
+    categoria = request.GET.get('categoria')
+    datos = list(Productos.objects.filter(categoria=categoria).values_list('tipo_categoria', flat=True).distinct())
+    return JsonResponse(datos, safe=False)
+
+def tipos_categoria_tipo_comidas(request):
+    categoria = request.GET.get('categoria')
+    tipo = request.GET.get('tipo')
+    subcategoria = request.GET.get('subcategoria')
+
+    if subcategoria == '0':
+        datos = list(Productos.objects.filter(categoria=categoria, tipo_categoria=tipo).values())
+        return JsonResponse(datos, safe=False)
+    else:
+        datos = list(Productos.objects.filter(categoria=categoria, tipo_categoria=tipo, subcategoria = subcategoria).values())
+        return JsonResponse(datos, safe=False)
+
+
+def tipos_subcategorias_comidas(request):
+    categoria = request.GET.get('categoria')
+    tipo = request.GET.get('tipo')
+    datos = list(Productos.objects.filter(categoria=categoria, tipo_categoria=tipo).values_list('subcategoria', flat=True).distinct())
+    return JsonResponse(datos, safe=False)
