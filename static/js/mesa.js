@@ -2,6 +2,19 @@ const BotonMostrarComidas = document.getElementById('btn_mostrar_comidas');
 const BotonMostrarBebidas = document.getElementById('btn_mostrar_bebidas');
 const DivContenedorSubcategorias = document.getElementsByClassName("contenedor-cards-subcategoria")[0]
 
+const cambiar_colores_botones = (a) => {
+
+    const BotonComidas = document.getElementById('btn_mostrar_comidas').querySelector('img');
+    const BotonBebidas = document.getElementById('btn_mostrar_bebidas').querySelector('img');
+
+    if (a === "bebidas"){
+        BotonComidas.src = "/static/image/comidas-marron.png";
+        BotonBebidas.src = "/static/image/bebidas-blanco.png";
+    } else if (a === "comidas") {
+        BotonBebidas.src = "/static/image/bebidas-marron.png";
+        BotonComidas.src = "/static/image/comidas-blanco.png";
+    }
+}
 
 const mostrar_divs_subcategoria = (data, categoria, tipo) => {
 
@@ -151,6 +164,7 @@ const mostrar_platos = () => {
     BotonMostrarComidas.classList.add("btn-activo");
     if(BotonMostrarBebidas.classList.contains("btn-activo")){BotonMostrarBebidas.classList.remove("btn-activo")}
 
+    cambiar_colores_botones("comidas");
     cargar_tipo_categoria("comida");
     cargar_cards_platos("comida", "entrantes", "")
 
@@ -160,6 +174,7 @@ const mostrar_bebidas = () => {
      BotonMostrarBebidas.classList.add("btn-activo");
     if(BotonMostrarComidas.classList.contains("btn-activo")){BotonMostrarComidas.classList.remove("btn-activo")}
 
+    cambiar_colores_botones("bebidas");
     cargar_tipo_categoria("bebida");
     cargar_cards_platos("bebida", "vinos", "")
 
