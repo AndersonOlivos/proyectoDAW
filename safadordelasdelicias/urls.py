@@ -14,6 +14,8 @@ urlpatterns = [
     path('carta/', go_carta, name='carta'),
     path('login/', go_login, name='login'),
     path('tipos_categoria_comidas/', tipos_categoria_comidas, name='tipos_categoria_comidas'),
+    path('tipos_subcategorias_comidas/', tipos_subcategorias_comidas, name='tipos_subcategorias_comidas'),
+    path('tipos_categoria_tipo_comidas/', tipos_categoria_tipo_comidas, name='tipos_categoria_tipo_comidas'),
 ]
 
 handler404 = custom_404

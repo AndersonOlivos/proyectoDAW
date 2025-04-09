@@ -48,5 +48,18 @@ def tipos_categoria_comidas(request):
 def tipos_categoria_tipo_comidas(request):
     categoria = request.GET.get('categoria')
     tipo = request.GET.get('tipo')
-    datos = list(Productos.objects.filter(categoria=categoria, tipo_categoria=tipo).values())
+    subcategoria = request.GET.get('subcategoria')
+
+    if subcategoria == '0':
+        datos = list(Productos.objects.filter(categoria=categoria, tipo_categoria=tipo).values())
+        return JsonResponse(datos, safe=False)
+    else:
+        datos = list(Productos.objects.filter(categoria=categoria, tipo_categoria=tipo, subcategoria = subcategoria).values())
+        return JsonResponse(datos, safe=False)
+
+
+def tipos_subcategorias_comidas(request):
+    categoria = request.GET.get('categoria')
+    tipo = request.GET.get('tipo')
+    datos = list(Productos.objects.filter(categoria=categoria, tipo_categoria=tipo).values_list('subcategoria', flat=True).distinct())
     return JsonResponse(datos, safe=False)
