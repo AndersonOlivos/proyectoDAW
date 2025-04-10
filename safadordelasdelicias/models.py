@@ -52,6 +52,8 @@ class Contratos(models.Model):
     horas_extra = models.PositiveIntegerField(null=True)
     faltas = models.PositiveIntegerField(null=True)
     mes = models.PositiveIntegerField(null=True)
+    fecha_alta = models.DateField(null=True, blank=True)
+    fecha_baja = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"Contrato {self.id_contrato}"
@@ -68,6 +70,8 @@ class Empleados(models.Model):
     puesto = models.CharField(max_length=100)
     cuenta_bancaria = models.CharField(max_length=100)
     id_contrato = models.ForeignKey(Contratos, on_delete=models.RESTRICT)
+    fecha_alta = models.DateField(null=True, blank=True)
+    fecha_baja = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"Empleado {self.id_empleado}"
@@ -102,6 +106,7 @@ class LineaPedido(models.Model):
     id_pedido = models.ForeignKey(Pedido, on_delete=models.DO_NOTHING, related_name='lineas')
     id_producto = models.ForeignKey(Productos, on_delete=models.RESTRICT)
     cantidad_producto = models.PositiveIntegerField(default=1)
+    fecha_alta = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"Línea {self.id} - {self.id_producto.nombre} x{self.cantidad_producto}"
