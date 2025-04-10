@@ -24,11 +24,14 @@ const mostrar_divs_subcategoria = (data, categoria, tipo) => {
     const fragment = document.createDocumentFragment();
 
     data.forEach(subcategoria => {
-      const button = document.createElement("button");
-      button.classList.add("card-subcategoria");
-      button.setAttribute("onclick", `cargar_cards_platos('${categoria}', '${tipo}', '${subcategoria}')`);
-      button.textContent = subcategoria;
-      fragment.appendChild(button);
+        if( subcategoria != ""){
+            const button = document.createElement("button");
+            button.classList.add("card-subcategoria");
+            button.setAttribute("onclick", `cargar_cards_platos('${categoria}', '${tipo}', '${subcategoria}')`);
+            button.textContent = subcategoria;
+            fragment.appendChild(button);
+        }
+
     });
 
     DivContenedorSubcategorias.appendChild(fragment);
@@ -117,19 +120,21 @@ const mostrar_divs_tipo_categoria = (data, categoria) => {
 
 const cargar_cards_platos = (categoria, tipo, subcategoria) => {
 
-    if(categoria === "comida" && tipo === "platos" && subcategoria === ''){
+    if(categoria === "Comida" && tipo === "Platos" && subcategoria === ''){
         fetch(`/tipos_subcategorias_comidas/?categoria=${categoria}&tipo=${tipo}`)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             DivContenedorSubcategorias.innerHTML = '';
             mostrar_divs_subcategoria(data, categoria, tipo)
         }).catch(error => {
             console.error('Error', error);
         })
-    } else if (categoria === "comida" && tipo === "platos" && subcategoria !== '') {
+    } else if (categoria === "Comida" && tipo === "Platos" && subcategoria !== '') {
         fetch(`/tipos_categoria_tipo_comidas/?categoria=${categoria}&tipo=${tipo}&subcategoria=${subcategoria}`)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             mostrar_divs_tipo_categoria_tipo(data)
         }).catch(error => {
             console.error('Error', error);
@@ -138,6 +143,7 @@ const cargar_cards_platos = (categoria, tipo, subcategoria) => {
         fetch(`/tipos_categoria_tipo_comidas/?categoria=${categoria}&tipo=${tipo}&subcategoria=0`)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             DivContenedorSubcategorias.innerHTML = '';
             mostrar_divs_tipo_categoria_tipo(data)
         }).catch(error => {
@@ -153,6 +159,7 @@ const cargar_tipo_categoria = (categoria) => {
     fetch(`/tipos_categoria_comidas/?categoria=${categoria}`)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             mostrar_divs_tipo_categoria(data, categoria)
         }).catch(error => {
             console.error('Error', error);
@@ -165,8 +172,8 @@ const mostrar_platos = () => {
     if(BotonMostrarBebidas.classList.contains("btn-activo")){BotonMostrarBebidas.classList.remove("btn-activo")}
 
     cambiar_colores_botones("comidas");
-    cargar_tipo_categoria("comida");
-    cargar_cards_platos("comida", "entrantes", "")
+    cargar_tipo_categoria("Comida");
+    cargar_cards_platos("Comida", "Entrantes", "")
 
 }
 
@@ -175,8 +182,8 @@ const mostrar_bebidas = () => {
     if(BotonMostrarComidas.classList.contains("btn-activo")){BotonMostrarComidas.classList.remove("btn-activo")}
 
     cambiar_colores_botones("bebidas");
-    cargar_tipo_categoria("bebida");
-    cargar_cards_platos("bebida", "vinos", "")
+    cargar_tipo_categoria("Bebida");
+    cargar_cards_platos("Bebida", "Vinos", "")
 
 }
 
