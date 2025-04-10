@@ -4,3 +4,4 @@ db.sqlite3
 db.sqlite3
 safadordelasdelicias/__pycache__/
 safadordelasdelicias/migrations/
+proyectoDAW/settings.py
