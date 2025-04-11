@@ -5,6 +5,10 @@ class EstadoMesa(models.TextChoices):
     disponible = 'Disponible'
     en_curso = 'En Curso'
 
+class Puesto_trabajo(models.TextChoices):
+    camarero = 'Camarero'
+    cocinero = 'Cocinero'
+    administrador = 'Administrador'
 
 class EstadoPedido(models.TextChoices):
     pendiente = 'Pendiente'
@@ -46,6 +50,7 @@ class Mesa(models.Model):
 
 class Contratos(models.Model):
     id_contrato = models.AutoField(primary_key=True)
+    tipo_contrato = models.CharField( choices=Puesto_trabajo,default=Puesto_trabajo.camarero,max_length=20)
     salario = models.FloatField(null=True)
     horas_semanales = models.PositiveIntegerField(null=True)
     dias_vacaciones = models.PositiveIntegerField(null=True)
@@ -56,18 +61,20 @@ class Contratos(models.Model):
     fecha_baja = models.DateField(null=True, blank=True)
 
     def __str__(self):
-        return f"Contrato {self.id_contrato}"
+        return f"Contrato {self.tipo_contrato}"
 
 class Empleados(models.Model):
     id_empleado = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
+    edad = models.PositiveIntegerField(null=True)
     direccion = models.CharField(max_length=100)
     correo = models.CharField(max_length=100)
     telefono = models.CharField(max_length=100)
     dni = models.CharField(max_length=100)
     sexo = models.CharField(max_length=100, choices=SEXO, default=SEXO.otros)
-    puesto = models.CharField(max_length=100)
+    numero_seguridad_social = models.CharField(max_length=100,null=True)
+    puesto = models.CharField(max_length=100,choices=Puesto_trabajo, default=Puesto_trabajo.camarero)
     cuenta_bancaria = models.CharField(max_length=100)
     id_contrato = models.ForeignKey(Contratos, on_delete=models.RESTRICT)
     fecha_alta = models.DateField(null=True, blank=True)

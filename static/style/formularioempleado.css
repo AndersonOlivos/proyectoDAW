@@ -1,0 +1,140 @@
+body{
+    background-color: var(--bs-blanco-roto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.contenedor{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 16px;
+    max-width: 1000px;
+    width: 100%;
+    margin-top: 10px;
+    gap: 2rem;
+    padding: 20px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.66);
+}
+.contenedor h1{
+    color: var(--bs-naranja-primario);
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+}
+
+form button{
+    width: 30%;
+    background-color: var(--bs-naranja-primario);
+    border-radius: 4px;
+    border: none;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+    padding: 10px;
+
+}
+
+.datos{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 4rem;
+    width: 90%;
+
+}
+
+.datos h2{
+    color: var(--bs-marron-oscuro);
+    font-weight: bold;
+}
+
+.datos_personales{
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.datos_personales > div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.datos_personales_dentro{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.datos_empleo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+}
+
+.linea_formulario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
+}
+
+.linea_formulario label{
+    color: var(--bs-naranja-primario);
+}
+
+.linea_formulario input,select{
+    border: 1px solid;
+    border-color: var(--bs-marron-claro);
+    border-radius: 5px;
+    height: 35px;
+    width: 400px;
+}
+
+@media screen and (max-width: 1000px) {
+    .contenedor{
+        max-width: none;
+        margin-top: 0;
+        border-radius: 0;
+    }
+}
+
+@media  screen and (max-width: 980px){
+    .datos{
+        align-items: center;
+    }
+
+    .datos_personales{
+        align-items: center;
+    }
+
+    .datos_empleo{
+        align-items: center;
+    }
+    .linea_formulario{
+        align-items: center;
+    }
+}

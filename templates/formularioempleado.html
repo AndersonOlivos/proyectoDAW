@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'style/global.css' %}">
+    <link rel="stylesheet" href="{% static 'style/formularioempleado.css' %}">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Registro De Empleados</h1>
+        <form method="post">
+    
+            {% csrf_token %}
+            <div class="datos">
+                <div class=" datos_personales">
+                    <h2>Datos Personales</h2>
+                    <div>
+                        <div class="datos_personales_dentro">
+                            <div class="linea_formulario">
+                                {{ form.nombre.label_tag }}
+                                {{ form.nombre }}
+                            </div>
+                            <div class="linea_formulario">
+                                {{ form.apellido.label_tag }}
+                                {{ form.apellido }}
+                            </div>
+                            <div class="linea_formulario" >
+                                {{ form.edad.label_tag }}
+                                {{ form.edad }}
+                            </div>
+                            <div class="linea_formulario">
+                                {{ form.sexo.label_tag }}
+                                {{ form.sexo }}
+                            </div>
+                        </div>
+                        <div class="datos_personales_dentro">
+                            <div class="linea_formulario">
+                                {{ form.telefono.label_tag }}
+                                {{ form.telefono }}
+                            </div>
+                            <div class="linea_formulario">
+                                {{ form.dni.label_tag }}
+                                {{ form.dni }}
+                            </div>
+                            <div class="linea_formulario">
+                                {{ form.correo.label_tag }}
+                                {{ form.correo }}
+                            </div>
+                            <div class="linea_formulario">
+                                {{ form.direccion.label_tag }}
+                                {{ form.direccion }}
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+                <div class="datos_empleo">
+                    <h2>Datos De Empleo</h2>
+                    <div class="linea_formulario">
+                        {{ form.puesto.label_tag }}
+                        {{ form.puesto }}
+                    </div>
+                    <div class="linea_formulario">
+                        {{ form.numero_seguridad_social.label_tag }}
+                        {{ form.numero_seguridad_social }}
+                    </div>
+                    <div class="linea_formulario">
+                        {{ form.id_contrato.label_tag }}
+                        {{ form.id_contrato }}
+                    </div>
+                    <div class="linea_formulario">
+                        {{ form.cuenta_bancaria.label_tag }}
+                        {{ form.cuenta_bancaria }}
+                    </div>
+                </div>
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>

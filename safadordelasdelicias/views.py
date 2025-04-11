@@ -1,5 +1,6 @@
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from .forms import *
 
 from safadordelasdelicias.models import Productos, Mesa
 
@@ -63,3 +64,13 @@ def tipos_subcategorias_comidas(request):
     tipo = request.GET.get('tipo')
     datos = list(Productos.objects.filter(categoria=categoria, tipo_categoria=tipo).values_list('subcategoria', flat=True).distinct())
     return JsonResponse(datos, safe=False)
+
+def formularioEmpleados(request):
+    if request.method == 'POST':
+        form = FormularioEmpleado(request.POST)
+        if form.is_valid():
+            form.save()  # Guarda en la base de datos si es ModelForm
+            return redirect('home_page')
+    else:
+        form = FormularioEmpleado()
+    return render(request, 'formularioempleado.html', {'form': form})
