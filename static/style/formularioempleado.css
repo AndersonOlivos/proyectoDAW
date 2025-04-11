@@ -112,6 +112,8 @@ form button{
     border-radius: 5px;
     height: 35px;
     width: 400px;
+    color: var(--bs-marron-oscuro);
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
 
 @media screen and (max-width: 1000px) {
