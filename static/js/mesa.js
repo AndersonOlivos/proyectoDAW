@@ -1,9 +1,43 @@
 /* FUNCIONES PARA EL CARRITO */
 
 const pTotalUnidadesPedido = document.getElementById('total-unidades-pedido');
-let totalUnidades = 0;
+let totalUnidades;
+let carrito = [];
+
+const actualizarCarritoVacio = () => {
+     const contenedorCardsCarrito = document.getElementsByClassName('contenedor-pedidos-carrito')[0];
+    if(contenedorCardsCarrito.getElementsByClassName('card-pedido-carrito').length > 0){
+        document.getElementsByClassName("div-carrito-vacio")[0].style.display = "none";
+    } else {document.getElementsByClassName("div-carrito-vacio")[0].style.display = "flex";}
+
+}
+
+const inicializarCarrito = () => {
+    totalUnidades = 0;
+    actualizarTotalUnidadesPedido()
+    document.getElementById('subtotal_total').innerHTML = '0.00';
+    document.getElementById('subtotal_iva').innerHTML = '0.00';
+    document.getElementById('total_total').innerHTML = '0.00';
+    actualizarCarritoVacio()
+}
 
 const actualizarTotalUnidadesPedido = () => {pTotalUnidadesPedido.innerHTML = totalUnidades.toString();}
+
+const actualizarSubtotalTotal = () => {
+    const subtotalTotal = document.querySelectorAll('.card-pedido-subtotal-precio');
+
+    let subtotalTotalValor = 0;
+    subtotalTotal.forEach(subtotal => {
+      subtotalTotalValor += parseFloat(subtotal.textContent.replace('€', '').trim());
+    });
+
+    let iva = (subtotalTotalValor * 10)/100;
+    let total = subtotalTotalValor + iva;
+
+    document.getElementById('subtotal_total').innerHTML = subtotalTotalValor.toString();
+    document.getElementById('subtotal_iva').innerHTML = (iva.toFixed(2)).toString();
+    document.getElementById('total_total').innerHTML = (total.toFixed(2)).toString();
+}
 
 const actualizarCantidadProducto = (producto, cantidad) => {
     const CardProductoCarrito = document.getElementById(`producto_${producto.id_Producto}_carrito`);
@@ -13,7 +47,7 @@ const actualizarCantidadProducto = (producto, cantidad) => {
         const cantidadActualizada = parseInt(cantidadProductoCarrito.textContent) + cantidad;
 
         const subtotalProductoCarrito = CardProductoCarrito.getElementsByClassName("card-pedido-subtotal-precio")[0];
-        subtotalProductoCarrito.innerHTML = `${cantidadActualizada * producto.precio} €`;
+        subtotalProductoCarrito.innerHTML = `${cantidadActualizada * producto.precio.toFixed(2)} €`;
 
         if (cantidadActualizada === 0){
             CardProductoCarrito.remove();
@@ -24,6 +58,8 @@ const actualizarCantidadProducto = (producto, cantidad) => {
     } else {
         crearCardProductoCarrito(producto);
     }
+    actualizarSubtotalTotal()
+    actualizarCarritoVacio()
 }
 
 const crearCardProductoCarrito = (producto) => {
@@ -49,7 +85,7 @@ const crearCardProductoCarrito = (producto) => {
 // Precio
     const precio = document.createElement("p");
     precio.classList.add("card-pedido-precio");
-    precio.textContent = `${producto.precio}€`;
+    precio.textContent = `${producto.precio.toFixed(2)}€`;
     cantidadesDiv.appendChild(precio);
 
 // Cantidades con botones
@@ -86,7 +122,7 @@ const crearCardProductoCarrito = (producto) => {
 
     const subtotalPrecio = document.createElement("p");
     subtotalPrecio.classList.add("card-pedido-subtotal-precio");
-    subtotalPrecio.textContent = `${producto.precio} €`;
+    subtotalPrecio.textContent = `${producto.precio.toFixed(2)} €`;
 
     subtotalDiv.appendChild(textoSubtotal);
     subtotalDiv.appendChild(subtotalPrecio);
@@ -97,7 +133,16 @@ const crearCardProductoCarrito = (producto) => {
     contenedorPedidos.appendChild(cardPedido);
 }
 
+inicializarCarrito();
 actualizarTotalUnidadesPedido();
+
+const limpiar_carrito = () => {
+    const cardsCarrito = document.querySelectorAll('.card-pedido-carrito');
+    cardsCarrito.forEach(cards => {
+        cards.remove();
+    })
+    inicializarCarrito();
+}
 
 /* FUNCIONES PARA MOSTRAR LAS CARDS DE LA CARTA */
 
