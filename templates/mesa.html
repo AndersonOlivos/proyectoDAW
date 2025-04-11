@@ -48,25 +48,29 @@
                 </div>
                 <div class="scroll-contenedor-carrito">
                     <div class="contenedor-pedidos-carrito">
+                        <div class="div-carrito-vacio">
+                            <img src="{% static 'image/carrito-marron.png' %}">
+                            <p>Tu carrito está vacío...</p>
+                        </div>
                     </div>
                 </div>
                 <div class="foot-pedido-actual">
                     <div class="subtotal-iva">
                         <div>
                             <p>Subtotal</p>
-                            <p>0.00€</p>
+                            <p><span id="subtotal_total"></span> €</p>
                         </div>
                         <div>
                             <p>IVA (10%)</p>
-                            <p>0.00€</p>
+                            <p><span id="subtotal_iva"></span> €</p>
                         </div>
                     </div>
                     <div class="total">
                         <p>Total</p>
-                        <p>0.00€</p>
+                        <p><span id="total_total"></span> €</p>
                     </div>
                     <div class="foot-botones">
-                        <button class="btn-limpiar">Limpiar</button>
+                        <button onclick="limpiar_carrito()" class="btn-limpiar">Limpiar</button>
                         <button class="btn-enviar">Enviar a cocina</button>
                         <button class="btn-pedir-cuenta">Pedir Cuenta</button>
                     </div>
