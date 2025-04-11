@@ -1,3 +1,106 @@
+/* FUNCIONES PARA EL CARRITO */
+
+const pTotalUnidadesPedido = document.getElementById('total-unidades-pedido');
+let totalUnidades = 0;
+
+const actualizarTotalUnidadesPedido = () => {pTotalUnidadesPedido.innerHTML = totalUnidades.toString();}
+
+const actualizarCantidadProducto = (producto, cantidad) => {
+    const CardProductoCarrito = document.getElementById(`producto_${producto.id_Producto}_carrito`);
+    if(CardProductoCarrito){
+        totalUnidades = totalUnidades + cantidad;
+        const cantidadProductoCarrito = CardProductoCarrito.getElementsByClassName("card-pedido-carrito-cantidad")[0];
+        const cantidadActualizada = parseInt(cantidadProductoCarrito.textContent) + cantidad;
+
+        const subtotalProductoCarrito = CardProductoCarrito.getElementsByClassName("card-pedido-subtotal-precio")[0];
+        subtotalProductoCarrito.innerHTML = `${cantidadActualizada * producto.precio} €`;
+
+        if (cantidadActualizada === 0){
+            CardProductoCarrito.remove();
+        } else {
+            cantidadProductoCarrito.innerHTML = cantidadActualizada;
+        }
+        actualizarTotalUnidadesPedido();
+    } else {
+        crearCardProductoCarrito(producto);
+    }
+}
+
+const crearCardProductoCarrito = (producto) => {
+
+    const contenedorPedidos = document.getElementsByClassName("contenedor-pedidos-carrito")[0];
+
+
+// Crear el div principal
+    const cardPedido = document.createElement("div");
+    cardPedido.classList.add("card-pedido-carrito");
+    cardPedido.id = `producto_${producto.id_Producto}_carrito`;
+
+// Nombre del producto
+    const nombreProducto = document.createElement("p");
+    nombreProducto.classList.add("card-pedido-nombre");
+    nombreProducto.textContent = producto.nombre;
+    cardPedido.appendChild(nombreProducto);
+
+// Div de cantidades y precio
+    const cantidadesDiv = document.createElement("div");
+    cantidadesDiv.classList.add("card-pedido-cantidades");
+
+// Precio
+    const precio = document.createElement("p");
+    precio.classList.add("card-pedido-precio");
+    precio.textContent = `${producto.precio}€`;
+    cantidadesDiv.appendChild(precio);
+
+// Cantidades con botones
+    const cantidadesControl = document.createElement("div");
+    cantidadesControl.classList.add("card-pedido-carrito-cantidades");
+
+    const botonMenos = document.createElement("button");
+    botonMenos.addEventListener("click", () => actualizarCantidadProducto(producto, -1));
+    botonMenos.textContent = "-";
+
+    const cantidad = document.createElement("p");
+    cantidad.classList.add("card-pedido-carrito-cantidad");
+    cantidad.textContent = "1";
+
+    const botonMas = document.createElement("button");
+    botonMas.addEventListener("click", () => actualizarCantidadProducto(producto, 1));
+    botonMas.textContent = "+";
+
+    cantidadesControl.appendChild(botonMenos);
+    cantidadesControl.appendChild(cantidad);
+    cantidadesControl.appendChild(botonMas);
+
+    cantidadesDiv.appendChild(cantidadesControl);
+    cardPedido.appendChild(cantidadesDiv);
+    totalUnidades++;
+    actualizarTotalUnidadesPedido();
+
+// Subtotal
+    const subtotalDiv = document.createElement("div");
+
+    const textoSubtotal = document.createElement("p");
+    textoSubtotal.classList.add("card-pedido-subtotal");
+    textoSubtotal.textContent = "Subtotal";
+
+    const subtotalPrecio = document.createElement("p");
+    subtotalPrecio.classList.add("card-pedido-subtotal-precio");
+    subtotalPrecio.textContent = `${producto.precio} €`;
+
+    subtotalDiv.appendChild(textoSubtotal);
+    subtotalDiv.appendChild(subtotalPrecio);
+
+    cardPedido.appendChild(subtotalDiv);
+
+// Añadir al contenedor
+    contenedorPedidos.appendChild(cardPedido);
+}
+
+actualizarTotalUnidadesPedido();
+
+/* FUNCIONES PARA MOSTRAR LAS CARDS DE LA CARTA */
+
 const BotonMostrarComidas = document.getElementById('btn_mostrar_comidas');
 const BotonMostrarBebidas = document.getElementById('btn_mostrar_bebidas');
 const DivContenedorSubcategorias = document.getElementsByClassName("contenedor-cards-subcategoria")[0]
@@ -79,6 +182,7 @@ const mostrar_divs_tipo_categoria_tipo = (data) => {
 
     const boton = document.createElement("button");
     boton.classList.add("card-comida-btn");
+    boton.addEventListener("click", () => actualizarCantidadProducto(tipo, 1))
     boton.textContent = "+";
 
     // Armado
@@ -124,7 +228,6 @@ const cargar_cards_platos = (categoria, tipo, subcategoria) => {
         fetch(`/tipos_subcategorias_comidas/?categoria=${categoria}&tipo=${tipo}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             DivContenedorSubcategorias.innerHTML = '';
             mostrar_divs_subcategoria(data, categoria, tipo)
         }).catch(error => {
@@ -134,7 +237,6 @@ const cargar_cards_platos = (categoria, tipo, subcategoria) => {
         fetch(`/tipos_categoria_tipo_comidas/?categoria=${categoria}&tipo=${tipo}&subcategoria=${subcategoria}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             mostrar_divs_tipo_categoria_tipo(data)
         }).catch(error => {
             console.error('Error', error);
@@ -143,7 +245,6 @@ const cargar_cards_platos = (categoria, tipo, subcategoria) => {
         fetch(`/tipos_categoria_tipo_comidas/?categoria=${categoria}&tipo=${tipo}&subcategoria=0`)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             DivContenedorSubcategorias.innerHTML = '';
             mostrar_divs_tipo_categoria_tipo(data)
         }).catch(error => {
@@ -159,7 +260,6 @@ const cargar_tipo_categoria = (categoria) => {
     fetch(`/tipos_categoria_comidas/?categoria=${categoria}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             mostrar_divs_tipo_categoria(data, categoria)
         }).catch(error => {
             console.error('Error', error);

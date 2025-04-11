@@ -27,11 +27,11 @@
 
         <div class="card text border border-0">
             <div class="card-body">
-                <a href="{% url 'mesa' mesa.id %}" class="{% if mesa.estado == 'disponible' %}mesa-disponible-h3{% elif mesa.estado == 'en curso' %}mesa-encurso-h3{% endif %}">
+                <a href="{% url 'mesa' mesa.id %}" class="{% if mesa.estado == 'Disponible' %}mesa-disponible-h3{% elif mesa.estado == 'En Curso' %}mesa-encurso-h3{% endif %}">
                     {{ mesa.id }}
                 </a>
                 <h5 class="card-title">Mesa {{ mesa.id }}</h5>
-                <p class="card-text {% if mesa.estado == 'disponible' %}card-text-disponible{% elif mesa.estado == 'en curso' %}card-text-encurso{% endif %}">
+                <p class="card-text {% if mesa.estado == 'Disponible' %}card-text-disponible{% elif mesa.estado == 'En Curso' %}card-text-encurso{% endif %}">
                     {{ mesa.estado.capitalize }}
                 </p>
             </div>
