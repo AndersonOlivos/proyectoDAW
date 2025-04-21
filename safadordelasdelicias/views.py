@@ -42,7 +42,14 @@ def go_login(request):
     return render(request, 'login.html')
 
 def go_admin(request):
-    return render(request, 'admin.html')
+    if request.method == 'POST':
+        form = FormularioEmpleado(request.POST)
+        if form.is_valid():
+            form.save()  # Guarda en la base de datos si es ModelForm
+            return redirect('admin')
+    else:
+        form = FormularioEmpleado()
+    return render(request, 'admin.html', {'form': form})
 
 def go_admin_empleados(request):
     return render(request, 'admin.html')

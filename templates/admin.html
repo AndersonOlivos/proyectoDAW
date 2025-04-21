@@ -182,94 +182,51 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="anadirEmpleado">
+                <form id="anadirEmpleado" method="post">
+                    {% csrf_token %}
                     <!-- Sección: Datos personales -->
                     <h6 class="mb-3">Datos personales</h6>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre">
+                            {{ form.nombre }}
                         </div>
                         <div class="col-md-6">
                             <label for="apellidos" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" id="apellidos">
+                            {{ form.apellido }}
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <label for="edad" class="form-label">Edad</label>
-                            <input type="number" min="16" class="form-control" id="edad">
+                            {{ form.edad }}
                         </div>
                         <div class="col-md-4">
                             <label for="sexo" class="form-label">Sexo</label>
-                            <select class="custom-select" id="sexo">
-                                <option selected disabled>Seleccione</option>
-                                <option>F</option>
-                                <option>M</option>
-                                <option>Otro</option>
-                            </select>
+                            {{ form.sexo }}
                         </div>
                         <div class="col-md-4">
                             <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="tel" class="form-control" id="telefono">
+                            {{ form.telefono }}
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="dni" class="form-label">DNI</label>
-                            <input type="text" class="form-control" id="dni">
+                            {{ form.dni }}
                         </div>
                         <div class="col-md-6">
                             <label for="correo" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="correo">
+                            {{ form.correo }}
                         </div>
                     </div>
 
                     <div class="mb-4">
                         <label for="direccion" class="form-label">Dirección</label>
-                        <input type="text" class="form-control" id="direccion">
+                        {{ form.direccion }}
                     </div>
-
-                    <!-- Sección: Datos de empleo -->
-                    <h6 class="mb-3">Datos de empleo</h6>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="puesto" class="form-label">Puesto</label>
-                            <select class="custom-select" id="puesto">
-                                <option selected disabled>Seleccione</option>
-                                <option>Camarero</option>
-                                <option>Cocinero</option>
-                                <option>Administrador</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="nss" class="form-label">Nº Seguridad Social</label>
-                            <input type="text" class="form-control" id="nss">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="tipoContrato" class="form-label">Tipo de contrato</label>
-                            <select class="custom-select" id="tipoContrato">
-                                <option selected disabled>Seleccione</option>
-                                <option>Indefinido</option>
-                                <option>Fijo discontinuo</option>
-                                <option>Tiempo parcial 10h</option>
-                                <option>Tiempo parcial 15h</option>
-                                <option>Tiempo parcial 20h</option>
-                                <option>Tiempo parcial 25h</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="cuentaBancaria" class="form-label">Cuenta bancaria</label>
-                            <input type="text" class="form-control" id="cuentaBancaria">
-                        </div>
-                    </div>
-
                 </form>
             </div>
             <div class="modal-footer">

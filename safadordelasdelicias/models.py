@@ -10,6 +10,12 @@ class Puesto_trabajo(models.TextChoices):
     cocinero = 'Cocinero'
     administrador = 'Administrador'
 
+class Tipo_contrato(models.TextChoices):
+    indefinido = 'Indefinido'
+    fijo_discontinuo = 'Fijo discontinuo'
+    tiempo_parcial_15 = 'Tiempo Parcial 15h'
+    tiempo_parcial_20 = 'Tiempo Parcial 20h'
+
 class EstadoPedido(models.TextChoices):
     pendiente = 'Pendiente'
     en_proceso = 'En Proceso'
@@ -50,7 +56,7 @@ class Mesa(models.Model):
 
 class Contratos(models.Model):
     id_contrato = models.AutoField(primary_key=True)
-    tipo_contrato = models.CharField( choices=Puesto_trabajo,default=Puesto_trabajo.camarero,max_length=20)
+    tipo_contrato = models.CharField( choices=Tipo_contrato,default=Tipo_contrato.indefinido,max_length=20)
     salario = models.FloatField(null=True)
     horas_semanales = models.PositiveIntegerField(null=True)
     dias_vacaciones = models.PositiveIntegerField(null=True)
@@ -59,6 +65,9 @@ class Contratos(models.Model):
     mes = models.PositiveIntegerField(null=True)
     fecha_alta = models.DateField(null=True, blank=True)
     fecha_baja = models.DateField(null=True, blank=True)
+    numero_seguridad_social = models.CharField(max_length=100, null=True)
+    puesto = models.CharField(max_length=100, choices=Puesto_trabajo, default=Puesto_trabajo.camarero)
+    cuenta_bancaria = models.CharField(max_length=100)
 
     def __str__(self):
         return f"Contrato {self.tipo_contrato}"
@@ -73,10 +82,7 @@ class Empleados(models.Model):
     telefono = models.CharField(max_length=100)
     dni = models.CharField(max_length=100)
     sexo = models.CharField(max_length=100, choices=SEXO, default=SEXO.otros)
-    numero_seguridad_social = models.CharField(max_length=100,null=True)
-    puesto = models.CharField(max_length=100,choices=Puesto_trabajo, default=Puesto_trabajo.camarero)
-    cuenta_bancaria = models.CharField(max_length=100)
-    id_contrato = models.ForeignKey(Contratos, on_delete=models.RESTRICT)
+    id_contrato = models.ForeignKey(Contratos, on_delete=models.RESTRICT, null=True, blank=True)
     fecha_alta = models.DateField(null=True, blank=True)
     fecha_baja = models.DateField(null=True, blank=True)
 
@@ -101,9 +107,7 @@ class Productos(models.Model):
 class Pedido(models.Model):
     id_pedido = models.AutoField(primary_key=True)
     id_mesa = models.ForeignKey(Mesa, on_delete=models.DO_NOTHING)
-    id_empleado = models.ForeignKey(Empleados, on_delete=models.DO_NOTHING)
-    estado = models.CharField(max_length=20, choices=EstadoPedido, default=EstadoPedido.pendiente)
-
+    id_empleado = models.ForeignKey(Empleados, on_delete=models.DO_NOTHING, null=True, blank=True)
     def __str__(self):
         return f"Pedido {self.id} - {self.estado}"
 
@@ -114,6 +118,8 @@ class LineaPedido(models.Model):
     id_producto = models.ForeignKey(Productos, on_delete=models.RESTRICT)
     cantidad_producto = models.PositiveIntegerField(default=1)
     fecha_alta = models.DateField(null=True, blank=True)
+    estado = models.CharField(max_length=20, choices=EstadoPedido, default=EstadoPedido.pendiente)
+
 
     def __str__(self):
         return f"Línea {self.id} - {self.id_producto.nombre} x{self.cantidad_producto}"
