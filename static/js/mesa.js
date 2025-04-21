@@ -328,7 +328,7 @@ const mostrar_bebidas = () => {
 
     cambiar_colores_botones("bebidas");
     cargar_tipo_categoria("Bebida");
-    cargar_cards_platos("Bebida", "Vinos", "")
+    cargar_cards_platos("Bebida", "Refrescos", "")
 
 }
 
