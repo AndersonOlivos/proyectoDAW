@@ -33,13 +33,9 @@ h1{
 
 
 .mesas{
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
     justify-self: center;
-    gap: 2rem;
-    width: 100%;
-    max-width: 1520px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .card{

@@ -26,7 +26,7 @@ const actualizarTotalUnidadesPedido = () => {pTotalUnidadesPedido.innerHTML = to
 const actualizarSubtotalTotal = () => {
     const subtotalTotal = document.querySelectorAll('.card-pedido-subtotal-precio');
 
-    let subtotalTotalValor = 0;
+    let subtotalTotalValor = 0.00;
     subtotalTotal.forEach(subtotal => {
       subtotalTotalValor += parseFloat(subtotal.textContent.replace('€', '').trim());
     });
@@ -34,7 +34,7 @@ const actualizarSubtotalTotal = () => {
     let iva = (subtotalTotalValor * 10)/100;
     let total = subtotalTotalValor + iva;
 
-    document.getElementById('subtotal_total').innerHTML = subtotalTotalValor.toString();
+    document.getElementById('subtotal_total').innerHTML = (subtotalTotalValor.toFixed(2)).toString();
     document.getElementById('subtotal_iva').innerHTML = (iva.toFixed(2)).toString();
     document.getElementById('total_total').innerHTML = (total.toFixed(2)).toString();
 }

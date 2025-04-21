@@ -1,0 +1,422 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador - Empleados</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style/global.css' %}">
+    <link rel="stylesheet" href="{% static 'style/admin.css' %}">
+
+</head>
+<body>
+<div id="contenedor">
+    <nav>
+        <div>
+            <h2>Safador De Las Delicias</h2>
+            <div class="div-opciones">
+                <a class="opcion-activa" href="{% url 'admin_empleados' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                         class="bi bi-people" viewBox="0 0 16 16">
+                        <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
+                    </svg>
+                    <span>Empleados</span>
+                </a>
+                <a href="{% url 'admin_carta' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                         class="bi bi-receipt" viewBox="0 0 16 16">
+                        <path d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27m.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0z"/>
+                        <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5"/>
+                    </svg>
+                    <span>Carta</span>
+                </a>
+                <a href="{% url 'admin_contrato' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                         class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+                        <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+                    </svg>
+                    <span>Tipos de Contrato</span>
+                </a>
+            </div>
+        </div>
+        <div class="div-usuario-conectado">
+            <div class="icono-usuario-conectado"><p>A</p></div>
+            <div class="datos-usuario-conectado">
+                <b>Admin</b>
+                <p class="correo-usuario-conectado">admin@safadordelasdelicias.com</p>
+            </div>
+        </div>
+
+    </nav>
+    <main>
+        <div class="main-cabecera">
+            <h1>Empleados</h1>
+            <button class="btn-anadir" data-toggle="modal" data-target="#modalAnadirEmpleado">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-plus"
+                     viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                </svg>
+                <p>Añadir empleado</p>
+            </button>
+        </div>
+        <div class="main-filtro">
+            <div class="buscador">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#a2a2a2" class="bi bi-search"
+                     viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+                <input placeholder="Buscar empleados..." type="text">
+            </div>
+            <div class="filtro">
+                <select>
+                    <option selected value="todos">Todos</option>
+                    <option value="activos">Activos</option>
+                    <option value="inactivos">Inactivos</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="main-cuerpo" id="main-empleado">
+            <table class="main-tabla">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Puesto</th>
+                    <th>Tipo de contrato</th>
+                    <th>Fecha de inicio</th>
+                    <th>Estado</th>
+                    <th id="th-acciones">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>María García</td>
+                    <td>Chef</td>
+                    <td>Indefinido</td>
+                    <td>15/03/2020</td>
+                    <td><span class="estado-activo">Activo</span></td>
+                    <td class="acciones">
+                        <button class="btn-editar" data-toggle="modal" data-target="#modalEditarEmpleado">
+                            <img class="img-editar" src="{% static 'image/editar.png' %}" alt="Editar">
+                        </button>
+                        <button class="btn-eliminar" data-toggle="modal" data-target="#modalEliminarEmpleado">
+                            <img class="img-eliminar" src="{% static 'image/eliminar.png' %}" alt="Eliminar">
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>María García</td>
+                    <td>Chef</td>
+                    <td>Indefinido</td>
+                    <td>15/03/2020</td>
+                    <td><span class="estado-activo">Activo</span></td>
+                    <td class="acciones">
+                        <button class="btn-editar" data-toggle="modal" data-target="#modalEditarEmpleado">
+                            <img class="img-editar" src="{% static 'image/editar.png' %}" alt="Editar">
+                        </button>
+                        <button class="btn-eliminar" data-toggle="modal" data-target="#modalEliminarEmpleado">
+                            <img class="img-eliminar" src="{% static 'image/eliminar.png' %}" alt="Eliminar">
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>María García</td>
+                    <td>Chef</td>
+                    <td>Indefinido</td>
+                    <td>15/03/2020</td>
+                    <td><span class="estado-activo">Activo</span></td>
+                    <td class="acciones">
+                        <button class="btn-editar" data-toggle="modal" data-target="#modalEditarEmpleado">
+                            <img class="img-editar" src="{% static 'image/editar.png' %}" alt="Editar">
+                        </button>
+                        <button class="btn-eliminar" data-toggle="modal" data-target="#modalEliminarEmpleado">
+                            <img class="img-eliminar" src="{% static 'image/eliminar.png' %}" alt="Eliminar">
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>María García</td>
+                    <td>Chef</td>
+                    <td>Indefinido</td>
+                    <td>15/03/2020</td>
+                    <td><span class="estado-activo">Activo</span></td>
+                    <td class="acciones">
+                        <button class="btn-editar" data-toggle="modal" data-target="#modalEditarEmpleado">
+                            <img class="img-editar" src="{% static 'image/editar.png' %}" alt="Editar">
+                        </button>
+                        <button class="btn-eliminar" data-toggle="modal" data-target="#modalEliminarEmpleado">
+                            <img class="img-eliminar" src="{% static 'image/eliminar.png' %}" alt="Eliminar">
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>María García</td>
+                    <td>Chef</td>
+                    <td>Indefinido</td>
+                    <td>15/03/2020</td>
+                    <td><span class="estado-activo">Activo</span></td>
+                    <td class="acciones">
+                        <button class="btn-editar" data-toggle="modal" data-target="#modalEditarEmpleado">
+                            <img class="img-editar" src="{% static 'image/editar.png' %}" alt="Editar">
+                        </button>
+                        <button class="btn-eliminar" data-toggle="modal" data-target="#modalEliminarEmpleado">
+                            <img class="img-eliminar" src="{% static 'image/eliminar.png' %}" alt="Eliminar">
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<div class="modal fade" id="modalAnadirEmpleado" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Añadir empleado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="anadirEmpleado">
+                    <!-- Sección: Datos personales -->
+                    <h6 class="mb-3">Datos personales</h6>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="edad" class="form-label">Edad</label>
+                            <input type="number" min="16" class="form-control" id="edad">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="sexo" class="form-label">Sexo</label>
+                            <select class="custom-select" id="sexo">
+                                <option selected disabled>Seleccione</option>
+                                <option>F</option>
+                                <option>M</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="dni" class="form-label">DNI</label>
+                            <input type="text" class="form-control" id="dni">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="correo" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="direccion" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" id="direccion">
+                    </div>
+
+                    <!-- Sección: Datos de empleo -->
+                    <h6 class="mb-3">Datos de empleo</h6>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="puesto" class="form-label">Puesto</label>
+                            <select class="custom-select" id="puesto">
+                                <option selected disabled>Seleccione</option>
+                                <option>Camarero</option>
+                                <option>Cocinero</option>
+                                <option>Administrador</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nss" class="form-label">Nº Seguridad Social</label>
+                            <input type="text" class="form-control" id="nss">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="tipoContrato" class="form-label">Tipo de contrato</label>
+                            <select class="custom-select" id="tipoContrato">
+                                <option selected disabled>Seleccione</option>
+                                <option>Indefinido</option>
+                                <option>Fijo discontinuo</option>
+                                <option>Tiempo parcial 10h</option>
+                                <option>Tiempo parcial 15h</option>
+                                <option>Tiempo parcial 20h</option>
+                                <option>Tiempo parcial 25h</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cuentaBancaria" class="form-label">Cuenta bancaria</label>
+                            <input type="text" class="form-control" id="cuentaBancaria">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-naranja" form="anadirEmpleado">Añadir</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalEditarEmpleado" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar empleado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="anadirEmpleado">
+                    <!-- Sección: Datos personales -->
+                    <h6 class="mb-3">Datos personales</h6>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="edad" class="form-label">Edad</label>
+                            <input type="number" min="16" class="form-control" id="edad">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="sexo" class="form-label">Sexo</label>
+                            <select class="custom-select" id="sexo">
+                                <option selected disabled>Seleccione</option>
+                                <option>F</option>
+                                <option>M</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="dni" class="form-label">DNI</label>
+                            <input type="text" class="form-control" id="dni">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="correo" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="direccion" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" id="direccion">
+                    </div>
+
+                    <!-- Sección: Datos de empleo -->
+                    <h6 class="mb-3">Datos de empleo</h6>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="puesto" class="form-label">Puesto</label>
+                            <select class="custom-select" id="puesto">
+                                <option selected disabled>Seleccione</option>
+                                <option>Camarero</option>
+                                <option>Cocinero</option>
+                                <option>Administrador</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nss" class="form-label">Nº Seguridad Social</label>
+                            <input type="text" class="form-control" id="nss">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="tipoContrato" class="form-label">Tipo de contrato</label>
+                            <select class="custom-select" id="tipoContrato">
+                                <option selected disabled>Seleccione</option>
+                                <option>Indefinido</option>
+                                <option>Fijo discontinuo</option>
+                                <option>Tiempo parcial 10h</option>
+                                <option>Tiempo parcial 15h</option>
+                                <option>Tiempo parcial 20h</option>
+                                <option>Tiempo parcial 25h</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cuentaBancaria" class="form-label">Cuenta bancaria</label>
+                            <input type="text" class="form-control" id="cuentaBancaria">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" form="anadirEmpleado">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade"  id="modalEliminarEmpleado" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmar eliminación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¿Está seguro de que desea eliminar este empleado? Esta acción no se puede deshacer.</p>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</body>
+</html>

@@ -40,7 +40,15 @@ h1{
     font-size: 2em !important;
 }
 
+p{
+    margin: 0;
+}
+
 p,a,button,div,label,input{
     font-family: 'Manjari', serif;
 }
 
+.btn-naranja{
+    background-color: var(--bs-naranja-primario);
+    color: white;
+}

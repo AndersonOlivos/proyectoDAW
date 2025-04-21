@@ -41,6 +41,18 @@ def go_carta(request):
 def go_login(request):
     return render(request, 'login.html')
 
+def go_admin(request):
+    return render(request, 'admin.html')
+
+def go_admin_empleados(request):
+    return render(request, 'admin.html')
+
+def go_admin_carta(request):
+    return render(request, 'admin_carta.html')
+
+def go_admin_contrato(request):
+    return render(request, 'admin_contrato.html')
+
 def tipos_categoria_comidas(request):
     categoria = request.GET.get('categoria')
     datos = list(Productos.objects.filter(categoria=categoria).values_list('tipo_categoria', flat=True).distinct())

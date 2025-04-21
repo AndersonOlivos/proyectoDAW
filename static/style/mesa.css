@@ -181,15 +181,14 @@
 }
 
 .contenedor-cards-comidas{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    gap: 1rem;
+    width: 100%;
     height: auto;
     max-height: 100%;
     overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    padding-bottom: 10px;
 }
 
 .card-comida{
