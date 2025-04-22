@@ -34,6 +34,7 @@
 h1,h2,h3,h4,h5,h6{
     font-family: 'Instrument', serif;
     font-weight: 400;
+    margin: 0;
 }
 
 h1{
@@ -46,6 +47,14 @@ p{
 
 p,a,button,div,label,input{
     font-family: 'Manjari', serif;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+button:focus {
+    outline: none;
 }
 
 .btn-naranja{

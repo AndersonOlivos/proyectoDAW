@@ -108,8 +108,9 @@ class Pedido(models.Model):
     id_pedido = models.AutoField(primary_key=True)
     id_mesa = models.ForeignKey(Mesa, on_delete=models.DO_NOTHING)
     id_empleado = models.ForeignKey(Empleados, on_delete=models.DO_NOTHING, null=True, blank=True)
+    cerrado = models.BooleanField(default=False)
     def __str__(self):
-        return f"Pedido {self.id} - {self.estado}"
+        return f"Pedido {self.id_pedido} - Cerrado: {self.cerrado}"
 
 
 class LineaPedido(models.Model):
@@ -122,4 +123,4 @@ class LineaPedido(models.Model):
 
 
     def __str__(self):
-        return f"Línea {self.id} - {self.id_producto.nombre} x{self.cantidad_producto}"
+        return f"Línea {self.id_linea_pedido} - {self.id_producto.nombre} x{self.cantidad_producto}"

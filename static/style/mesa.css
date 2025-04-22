@@ -35,7 +35,12 @@
 
 .volver-mesas:hover{
     background-color: #ecd5c3;
+    color: black;
     border-radius: 10px;
+}
+
+.volver-mesas>p{
+    margin-top: 4px;
 }
 
 .small-img{
@@ -268,6 +273,9 @@
 }
 
 .card-comida-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
     background-color: var(--bs-naranja-primario);
     border-radius: 4px;
@@ -300,6 +308,21 @@
     width: 100%;
     border-bottom: 1px solid var(--bs-marron-claro);
     background-color: #f2e1d3;
+}
+
+#btn-historial{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 0;
+    border-radius: 10px;
+    background-color: var(--bs-naranja-secundario);
+    width: min-content;
+    padding: 10px 12px 10px 10px;
+    height: 40px;
 }
 
 .div-carrito-numero{
@@ -502,6 +525,53 @@
     background-color: var(--bs-marron-claro);
     color: white;
     border: 0;
+}
+
+
+/* MODAL */
+
+.modal-body{
+    padding: 0;
+}
+
+.main-tabla {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+thead th {
+    padding: 16px;
+    text-align: center;
+    color: #6c757d;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+tfoot td {
+    padding: 16px;
+    text-align: center;
+    color: #6c757d;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+tbody td {
+    padding: 12px;
+    border-top: 1px solid #e9ecef;
+    font-size: 15px;
+    text-align: center;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover{
+    background-color: #eef3ff;
 }
 
 

@@ -1,3 +1,7 @@
+function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
+
 /* FUNCIONES PARA EL CARRITO */
 
 const pTotalUnidadesPedido = document.getElementById('total-unidades-pedido');
@@ -333,3 +337,46 @@ const mostrar_bebidas = () => {
 }
 
 mostrar_platos();
+
+const enviar_a_cocina = (id_mesa) => {
+    const datos_enviar = {
+        mesa: id_mesa,
+        productos: {}
+    };
+
+    const CardsCarrito = document.getElementsByClassName('card-pedido-carrito');
+
+    Array.from(CardsCarrito).forEach(card => {
+        const idCompleto = card.id;
+        const cantidadElement = card.querySelector('.card-pedido-carrito-cantidad');
+        const cantidad = cantidadElement ? parseInt(cantidadElement.textContent) : 0;
+
+        const idNumerico = idCompleto.split('_')[1];
+
+        if (idNumerico && cantidad > 0) {
+            datos_enviar.productos[idNumerico] = cantidad;
+        }
+    });
+
+    console.log('Datos a enviar:', datos_enviar);
+
+    fetch('/enviar_a_cocina/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCSRFToken()
+        },
+        body: JSON.stringify(datos_enviar) // Enviamos el objeto completo
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Respuesta:', data);
+        limpiar_carrito();
+        window.location.reload();
+        // Aquí podrías añadir alguna notificación al usuario
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Aquí podrías mostrar un mensaje de error al usuario
+    });
+}
