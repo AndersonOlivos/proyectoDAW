@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -35,14 +35,6 @@ def go_mesa(request, id):
     historial = False
     if pedido_activo:
         historial = LineaPedido.objects.filter(id_pedido=pedido_activo).exists()
-        lineas_pedido = LineaPedido.objects.filter(id_pedido=pedido_activo)\
-                          .select_related('id_producto')\
-                          .all()
-        total = sum(
-            linea.cantidad_producto * linea.id_producto.precio
-            for linea in lineas_pedido
-        )
-        return render(request, 'mesa.html', {'mesa': mesa, "historial": historial, "lineas_pedido": lineas_pedido, "cuenta_total": total})
 
     return render(request, 'mesa.html', {'mesa': mesa, "historial": historial})
 
@@ -134,6 +126,15 @@ def enviar_a_cocina(request):
                 nuevo_pedido = Pedido(id_mesa=mesa, id_empleado=None, cerrado=False)
                 nuevo_pedido.save()
                 print("PEDIDO CREADO")
+                for producto_id, cantidad in productos.items():
+                    nueva_linea_pedido = LineaPedido(
+                        id_pedido=nuevo_pedido,
+                        id_producto=Productos.objects.get(id_Producto=producto_id),
+                        cantidad_producto=cantidad,
+                        estado=EstadoPedido.en_proceso,
+                    )
+                    nueva_linea_pedido.save()
+                    print(f"Nueva linea de pedido para la mesa {mesa_id}")
 
             elif mesa.estado == "En Curso":
                 try:
@@ -167,3 +168,30 @@ def enviar_a_cocina(request):
             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
 
     return JsonResponse({'status': 'error', 'message': 'Método no permitido'}, status=405)
+
+def cargar_historial_pedido(request):
+ id_mesa = request.GET.get('id_mesa')
+ if not id_mesa:
+     return JsonResponse({'error': 'Parametro id_mesa requerido'}, status=404)
+
+ mesa = get_object_or_404(Mesa, id=id_mesa)
+ pedido = Pedido.objects.filter(id_mesa=mesa, cerrado=False).first()
+ lineas_pedido = LineaPedido.objects.filter(id_pedido=pedido).select_related('id_producto').all()
+
+ datos_lineas = [
+     {
+         'producto': linea.id_producto.nombre,
+         'cantidad': linea.cantidad_producto,
+         'precio_unitario': linea.id_producto.precio,
+         'subtotal': linea.cantidad_producto * linea.id_producto.precio,
+         'estado': linea.estado,
+     }
+     for linea in lineas_pedido
+ ]
+
+ total = sum(linea['subtotal'] for linea in datos_lineas)
+
+ return JsonResponse({
+     'lineas': datos_lineas,
+     'total': total
+ })

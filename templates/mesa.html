@@ -45,7 +45,7 @@
                     <h5>Pedido Actual</h5>
 
                     {% if historial %}
-                        <button id="btn-historial" data-toggle="modal" data-target="#modalAnadirEmpleado">
+                        <button onclick="cargar_historial({{ mesa.id }})" id="btn-historial" data-toggle="modal" data-target="#modalAnadirEmpleado">
                             <img class="" src="{% static 'image/historial.png' %}" alt="historial">
                         </button>
                     {% endif %}
@@ -102,26 +102,20 @@
                 <thead>
                 <tr>
                     <th>Producto</th>
-                    <th>Precio Unidad</th>
                     <th>Cantidad</th>
+                    <th>Precio Unidad</th>
+                    <th>Subtotal</th>
                     <th>Estado</th>
                 </tr>
                 </thead>
-                <tbody>
-                {% for linea in lineas_pedido %}
-                	<tr>
-                    <td>{{ linea.id_producto }}</td>
-                    <td>{{ linea.id_producto.precio }} €</td>
-                    <td>{{ linea.cantidad_producto }}</td>
-                    <td>{{ linea.estado }}</td>
-                </tr>
-                {% endfor %}
+                <tbody id="tbody-lineas-pedido">
+
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="2"></td>
+                        <td colspan="3"></td>
                         <td>Total: </td>
-                        <td>{{ cuenta_total }} €</td>
+                        <td><span id="historial-total"></span> €</td>
                     </tr>
                 </tfoot>
             </table>

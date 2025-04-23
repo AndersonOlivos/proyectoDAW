@@ -6,7 +6,6 @@ function getCSRFToken() {
 
 const pTotalUnidadesPedido = document.getElementById('total-unidades-pedido');
 let totalUnidades;
-let carrito = [];
 
 const actualizarCarritoVacio = () => {
      const contenedorCardsCarrito = document.getElementsByClassName('contenedor-pedidos-carrito')[0];
@@ -338,6 +337,8 @@ const mostrar_bebidas = () => {
 
 mostrar_platos();
 
+/* FUNCIONES PARA ENVIAR A COCINA Y CARGAR LOS DATOS DEL HISTORIAL */
+
 const enviar_a_cocina = (id_mesa) => {
     const datos_enviar = {
         mesa: id_mesa,
@@ -372,11 +373,38 @@ const enviar_a_cocina = (id_mesa) => {
     .then(data => {
         console.log('Respuesta:', data);
         limpiar_carrito();
-        window.location.reload();
-        // Aquí podrías añadir alguna notificación al usuario
+        alert("ENVIADO CORRECTAMENTE A COCINA")
     })
     .catch(error => {
         console.error('Error:', error);
         // Aquí podrías mostrar un mensaje de error al usuario
     });
+}
+
+const cargar_historial = (id_mesa) => {
+    fetch(`/cargar_historial_pedido/?id_mesa=${id_mesa}`)
+        .then(response => response.json())
+        .then(data => {
+
+            const TBody = document.getElementById("tbody-lineas-pedido");
+            TBody.innerHTML = "";
+
+            data.lineas.forEach(linea => {
+                const rowHTML = `
+            <tr>
+                <td>${linea.producto}</td>
+                <td>${linea.cantidad}</td>
+                <td>${parseFloat(linea.precio_unitario).toFixed(2)} €</td>
+                <td>${parseFloat(linea.subtotal).toFixed(2)} €</td>
+                <td>${linea.estado}</td>
+            </tr>
+            `;
+                TBody.innerHTML += rowHTML;
+            });
+
+            document.getElementById('historial-total').innerHTML = data.total;
+        }).catch(error => {
+            console.log("No se puede realizar el fetch");
+            console.error('Error', error);
+    })
 }

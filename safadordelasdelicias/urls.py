@@ -21,6 +21,7 @@ urlpatterns = [
     path('tipos_subcategorias_comidas/', tipos_subcategorias_comidas, name='tipos_subcategorias_comidas'),
     path('tipos_categoria_tipo_comidas/', tipos_categoria_tipo_comidas, name='tipos_categoria_tipo_comidas'),
     path('enviar_a_cocina/', enviar_a_cocina, name='enviar_a_cocina'),
+    path('cargar_historial_pedido/', cargar_historial_pedido, name="cargar_historial_pedido"),
 
     path('formularioEmpleado/',formularioEmpleados,name='formularioEmpleado'),
 ]
