@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
+AUTH_USER_MODEL = 'safadordelasdelicias.Empleados'
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -79,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': 'XE',
-        'USER': 'C##ANDER',
+        'USER': 'C##ASADOR',
         'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '1521',
