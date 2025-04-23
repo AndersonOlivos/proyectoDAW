@@ -226,7 +226,7 @@ const mostrar_divs_tipo_categoria_tipo = (data) => {
 
     const precio = document.createElement("p");
     precio.classList.add("card-comida-precio");
-    precio.textContent = `${tipo.precio}€`;
+    precio.textContent = `${parseFloat(tipo.precio).toFixed(2)}€`;
 
     const boton = document.createElement("button");
     boton.classList.add("card-comida-btn");
@@ -402,7 +402,7 @@ const cargar_historial = (id_mesa) => {
                 TBody.innerHTML += rowHTML;
             });
 
-            document.getElementById('historial-total').innerHTML = data.total;
+            document.getElementById('historial-total').textContent = parseFloat(data.total).toFixed(2);
         }).catch(error => {
             console.log("No se puede realizar el fetch");
             console.error('Error', error);
