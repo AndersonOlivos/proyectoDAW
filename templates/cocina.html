@@ -8,112 +8,65 @@
     <link rel="stylesheet" href="{% static 'style/cocina.css' %}">
 </head>
 <body>
-    <div class="contenedor">
-        <div class="nabvar-cocina">
-            <div class="nombre-restaurante">
-                <img src="{% static 'image/gorro-chef-naranja.png' %}">
-                <h1>Safador de las Delicias - Inicio Sesión</h1>
-            </div>
-            <p class="fecha">17/02/2025</p>
+<div class="contenedor">
+    <div class="nabvar-cocina">
+        <div class="nombre-restaurante">
+            <img src="{% static 'image/gorro-chef-naranja.png' %}">
+            <h1>Safador de las Delicias - Inicio Sesión</h1>
         </div>
-        <div class="comandas">
-            <div class="card-comanda">
-                <div class="header-comanda"> 
-                    <h3 class="header-comanda-nombre"><b>Tortilla Española</b></h3>
-                    <p class="header-comanda-mesa">Mesa 3</p>
-                </div>
-                <div class="comanda-tiempo">
-                    <div class="comanda-tiempo-img">
-                        <img src="{% static 'image/reloj-marron-claro.png' %}">
-                    </div>
-                    <p class="comanda-tiempo-texto">Hace 15 min</p>
-                </div>
-                <div class="comanda-descripcion">
-                    <p class="comanda-descripcion-cantidad">x2</p>
-                    <p class="comanda-descripcion-texto">Traditional spanish omelet.</p>
-                </div>
-                <div class="comanda-boton-preparado">
-                    <button type="submit">Preparado</button>
-                </div>
-            </div>
-            <div class="card-comanda">
-                <div class="header-comanda">
-                    <h3 class="header-comanda-nombre"><b>Tortilla Española</b></h3>
-                    <p class="header-comanda-mesa">Mesa 3</p>
-                </div>
-                <div class="comanda-tiempo">
-                    <div class="comanda-tiempo-img">
-                        <img src="{% static 'image/reloj-marron-claro.png' %}">
-                    </div>
-                    <p class="comanda-tiempo-texto">Hace 15 min</p>
-                </div>
-                <div class="comanda-descripcion">
-                    <p class="comanda-descripcion-cantidad">x2</p>
-                    <p class="comanda-descripcion-texto">Traditional spanish omelet.</p>
-                </div>
-                <div class="comanda-boton-preparado">
-                    <button type="submit">Preparado</button>
-                </div>
-            </div>
-            <div class="card-comanda">
-                <div class="header-comanda">
-                    <h3 class="header-comanda-nombre"><b>Tortilla Española</b></h3>
-                    <p class="header-comanda-mesa">Mesa 3</p>
-                </div>
-                <div class="comanda-tiempo">
-                    <div class="comanda-tiempo-img">
-                        <img src="{% static 'image/reloj-marron-claro.png' %}">
-                    </div>
-                    <p class="comanda-tiempo-texto">Hace 15 min</p>
-                </div>
-                <div class="comanda-descripcion">
-                    <p class="comanda-descripcion-cantidad">x2</p>
-                    <p class="comanda-descripcion-texto">Traditional spanish omelet.</p>
-                </div>
-                <div class="comanda-boton-preparado">
-                    <button type="submit">Preparado</button>
-                </div>
-            </div>
-            <div class="card-comanda">
-                <div class="header-comanda">
-                    <h3 class="header-comanda-nombre"><b>Tortilla Española</b></h3>
-                    <p class="header-comanda-mesa">Mesa 3</p>
-                </div>
-                <div class="comanda-tiempo">
-                    <div class="comanda-tiempo-img">
-                        <img src="{% static 'image/reloj-marron-claro.png' %}">
-                    </div>
-                    <p class="comanda-tiempo-texto">Hace 15 min</p>
-                </div>
-                <div class="comanda-descripcion">
-                    <p class="comanda-descripcion-cantidad">x2</p>
-                    <p class="comanda-descripcion-texto">Traditional spanish omelet.</p>
-                </div>
-                <div class="comanda-boton-preparado">
-                    <button type="submit">Preparado</button>
-                </div>
-            </div>
-            <div class="card-comanda">
-                <div class="header-comanda">
-                    <h3 class="header-comanda-nombre"><b>Tortilla Española</b></h3>
-                    <p class="header-comanda-mesa">Mesa 3</p>
-                </div>
-                <div class="comanda-tiempo">
-                    <div class="comanda-tiempo-img">
-                        <img src="{% static 'image/reloj-marron-claro.png' %}">
-                    </div>
-                    <p class="comanda-tiempo-texto">Hace 15 min</p>
-                </div>
-                <div class="comanda-descripcion">
-                    <p class="comanda-descripcion-cantidad">x2</p>
-                    <p class="comanda-descripcion-texto">Traditional spanish omelet.</p>
-                </div>
-                <div class="comanda-boton-preparado">
-                    <button type="submit">Preparado</button>
-                </div>
-            </div>
-        </div>
+        <p class="fecha">17/02/2025</p>
     </div>
+    <div class="comandas">
+        {% for linea_pedido in lineas_pedidos %}
+            {% if linea_pedido.estado == "Pendiente" %}
+                <div class="card-comanda">
+                    <div class="header-comanda">
+                        <h3 class="header-comanda-nombre"><b>{{ linea_pedido.nombre_producto }}</b></h3>
+                        <p class="header-comanda-mesa">Mesa {{ linea_pedido.numero_mesa }}</p>
+                    </div>
+                    <div class="comanda-tiempo">
+                        <div class="comanda-tiempo-img">
+                            <img src="{% static 'image/reloj-marron-claro.png' %}">
+                        </div>
+                        <p class="comanda-tiempo-texto">Hace 15 min</p>
+                    </div>
+                    <div class="comanda-descripcion">
+                        <p class="comanda-descripcion-cantidad">x{{ linea_pedido.cantidad }}</p>
+                        <p class="comanda-descripcion-texto">{{ linea_pedido.descripcion }}</p>
+                    </div>
+                    <div class="comanda-boton-enproceso">
+                        <button type="button" onclick="actualizar_linea_pedido('En Proceso', {{ linea_pedido.id_linea_pedido }})">Preparar</button>
+                    </div>
+                </div>
+            {% endif %}
 
+
+
+            {% if linea_pedido.estado == "En Proceso" %}
+                <div class="card-comanda">
+                    <div class="header-comanda">
+                        <h3 class="header-comanda-nombre"><b>{{ linea_pedido.nombre_producto }}</b></h3>
+                        <p class="header-comanda-mesa">Mesa {{ linea_pedido.numero_mesa }}</p>
+                    </div>
+                    <div class="comanda-tiempo">
+                        <div class="comanda-tiempo-img">
+                            <img src="{% static 'image/reloj-marron-claro.png' %}">
+                        </div>
+                        <p class="comanda-tiempo-texto">Hace 15 min</p>
+                    </div>
+                    <div class="comanda-descripcion">
+                        <p class="comanda-descripcion-cantidad">x{{ linea_pedido.cantidad }}</p>
+                        <p class="comanda-descripcion-texto">{{ linea_pedido.descripcion }}</p>
+                    </div>
+                    <div class="comanda-boton-preparado">
+                        <button type="button" onclick="actualizar_linea_pedido('Completado', {{ linea_pedido.id_linea_pedido }})">Completado</button>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<script src="{% static 'js/cocina.js' %}"></script>
 </body>
 </html>

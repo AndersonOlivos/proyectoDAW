@@ -574,6 +574,27 @@ tbody tr:hover{
     background-color: #eef3ff;
 }
 
+#modal-body-metodo-pago{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.div-metodo-pago{
+    cursor: pointer;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    background-color: var(--bs-naranja-primario);
+    color: white;
+    border-radius: 10px;
+}
 
 @media (max-width: 1200px) {
     #contenedor-pedido-actual {

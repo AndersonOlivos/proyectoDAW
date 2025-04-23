@@ -24,6 +24,7 @@ urlpatterns = [
     path('cargar_historial_pedido/', cargar_historial_pedido, name="cargar_historial_pedido"),
 
     path('formularioEmpleado/',formularioEmpleados,name='formularioEmpleado'),
+    path('actualizar_linea_pedido/', actualizar_linea_pedido, name='actualizar_linea_pedido')
 ]
 
 handler404 = custom_404

@@ -40,7 +40,27 @@ def go_mesa(request, id):
 
 
 def go_cocina(request):
-    return render(request, 'cocina.html')
+
+    en_proceso = LineaPedido.objects.filter(estado="En Proceso").exclude(id_producto__categoria=CategoriaProducto.bebida
+    ).select_related('id_producto', 'id_pedido')
+
+    pendientes = LineaPedido.objects.filter(estado="Pendiente").exclude(id_producto__categoria=CategoriaProducto.bebida
+    ).select_related('id_producto', 'id_pedido')
+
+    lineas_pedidos = list(en_proceso) + list(pendientes)
+
+    datos_pedidos = []
+    for linea in lineas_pedidos:
+        datos_pedidos.append({
+            'id_linea_pedido': linea.id_linea_pedido,
+            'nombre_producto': linea.id_producto.nombre,
+            'numero_mesa': linea.id_pedido.id_mesa.id,
+            'cantidad': linea.cantidad_producto,
+            'descripcion': linea.id_producto.descripcion,
+            'estado': linea.estado,
+        })
+
+    return render(request, 'cocina.html', {'lineas_pedidos': datos_pedidos})
 
 def go_carta(request):
     return render(request, 'carta.html')
@@ -101,7 +121,6 @@ def formularioEmpleados(request):
         form = FormularioEmpleado()
     return render(request, 'formularioempleado.html', {'form': form})
 
-
 def enviar_a_cocina(request):
     if request.method == 'POST':
         try:
@@ -131,7 +150,7 @@ def enviar_a_cocina(request):
                         id_pedido=nuevo_pedido,
                         id_producto=Productos.objects.get(id_Producto=producto_id),
                         cantidad_producto=cantidad,
-                        estado=EstadoPedido.en_proceso,
+                        estado=EstadoPedido.pendiente,
                     )
                     nueva_linea_pedido.save()
                     print(f"Nueva linea de pedido para la mesa {mesa_id}")
@@ -146,7 +165,7 @@ def enviar_a_cocina(request):
                             id_pedido=pedido_activo,
                             id_producto=Productos.objects.get(id_Producto=producto_id),
                             cantidad_producto=cantidad,
-                            estado=EstadoPedido.en_proceso,
+                            estado=EstadoPedido.pendiente,
                         )
                         nueva_linea_pedido.save()
                         print(f"Nueva linea de pedido para la mesa {mesa_id}")
@@ -195,3 +214,11 @@ def cargar_historial_pedido(request):
      'lineas': datos_lineas,
      'total': total
  })
+
+def actualizar_linea_pedido(request):
+    id_linea_pedido = request.GET.get('id_linea_pedido')
+    estado_linea_pedido = request.GET.get('estado')
+    linea_pedido = LineaPedido.objects.get(id_linea_pedido=id_linea_pedido)
+    linea_pedido.estado = estado_linea_pedido
+    linea_pedido.save()
+    return JsonResponse({'status': 'success'})
