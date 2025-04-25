@@ -83,8 +83,6 @@ class Contratos(models.Model):
 
 class UsuarioManager(BaseUserManager):
 
-    def generar_contrasenia(longitud=6):
-        return ''.join(secrets.choice(string.digits) for _ in range(longitud))
     def create_user(self, correo, nombre, puesto, password=None):
 
         if not correo:
@@ -116,7 +114,7 @@ class Empleados(AbstractBaseUser, PermissionsMixin):
     correo = models.CharField(max_length=100, unique=True)
     telefono = models.CharField(max_length=100)
     dni = models.CharField(max_length=100, unique=True)
-    sexo = models.CharField(max_length=100, choices=SEXO, default=SEXO.otros)
+    sexo = models.CharField(max_length=1,choices=SEXO.choices,default=SEXO.otros)
     id_contrato = models.ForeignKey(Contratos, on_delete=models.RESTRICT, null=True, blank=True)
     fecha_alta = models.DateField(null=True, blank=True)
     fecha_baja = models.DateField(null=True, blank=True)

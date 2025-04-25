@@ -407,4 +407,4 @@ const cargar_historial = (id_mesa) => {
             console.log("No se puede realizar el fetch");
             console.error('Error', error);
     })
-}
+} 

@@ -227,9 +227,21 @@
                         <label for="direccion" class="form-label">Dirección</label>
                         {{ form.direccion }}
                     </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="dni" class="form-label">Puesto</label>
+                            {{ form.puesto }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="correo" class="form-label">Contraseña</label>
+                            {{ form.password }}
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-info" id="btn-generar-contrasenia">Generar contraseña</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-naranja" form="anadirEmpleado">Añadir</button>
             </div>
@@ -374,6 +386,6 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-
+    <script src="{% static 'js/admin.js' %}"></script>
 </body>
 </html>

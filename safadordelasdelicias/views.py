@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -46,20 +47,38 @@ def go_carta(request):
     return render(request, 'carta.html')
 
 def go_login(request):
-    return render(request, 'login.html')
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            empleados = authenticate(request, correo=email, password=password)
+            if empleados is not None:
+                try:
+                    login(request, empleados)
+                except Exception as e:
+                    return render(request, '404.html', status=404)
+                return redirect('home')
+            print(empleados)
+    else:
+        form = LoginForm()
+
+    return  render(request, 'login.html', {'form': form})
+def generar_contrasenia(longitud=6):
+    return ''.join(secrets.choice(string.digits) for _ in range(longitud))
 
 def go_admin(request):
+
     if request.method == 'POST':
         form = FormularioEmpleado(request.POST)
         if form.is_valid():
-            form.save()  # Guarda en la base de datos si es ModelForm
+            Empleados = form.save(commit=False)
+            Empleados.set_password(form.cleaned_data['password'])
+            Empleados.save()
             return redirect('admin')
     else:
         form = FormularioEmpleado()
     return render(request, 'admin.html', {'form': form})
-
-def go_admin_empleados(request):
-    return render(request, 'admin.html')
 
 def go_admin_carta(request):
     return render(request, 'admin_carta.html')
