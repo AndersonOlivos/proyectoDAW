@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -7,14 +8,12 @@ from .forms import *
 
 from safadordelasdelicias.models import Productos, Mesa
 
-
+def es_admin(Empleado):
+    return Empleado.is_authenticated and Empleado.puesto == 'Administrador'
 # Create your views here.
 
 def go_home(request):
     return render(request, 'home.html')
-
-def go_templo(request):
-    return render(request, 'templo.html')
 
 def cargar_carta(request):
 
@@ -22,6 +21,7 @@ def cargar_carta(request):
 
     return render(request, 'carta.html', {'lista_productos': lista_productos})
 
+@login_required
 def go_mesas(request):
     lista_mesas = Mesa.objects.all()
     return render(request, 'mesas.html', {'lista_mesas': lista_mesas})
@@ -29,7 +29,7 @@ def go_mesas(request):
 
 def custom_404(request, exception=None):
     return render(request, '404.html', status=404)
-
+@login_required
 def go_mesa(request, id):
     mesa = get_object_or_404(Mesa, id=id)
     pedido_activo = Pedido.objects.filter(id_mesa=mesa, cerrado=False).first()
@@ -39,7 +39,7 @@ def go_mesa(request, id):
 
     return render(request, 'mesa.html', {'mesa': mesa, "historial": historial})
 
-
+@login_required
 def go_cocina(request):
     return render(request, 'cocina.html')
 
@@ -53,20 +53,21 @@ def go_login(request):
             email = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             empleados = authenticate(request, correo=email, password=password)
-            if empleados is not None:
+            if empleados:
                 try:
                     login(request, empleados)
-                except Exception as e:
+                except Exception:
                     return render(request, '404.html', status=404)
-                return redirect('home')
+                return redirect('home_page')
             print(empleados)
     else:
         form = LoginForm()
 
-    return  render(request, 'login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 def generar_contrasenia(longitud=6):
     return ''.join(secrets.choice(string.digits) for _ in range(longitud))
 
+@user_passes_test(es_admin)
 def go_admin(request):
 
     if request.method == 'POST':
@@ -79,10 +80,10 @@ def go_admin(request):
     else:
         form = FormularioEmpleado()
     return render(request, 'admin.html', {'form': form})
-
+@user_passes_test(es_admin)
 def go_admin_carta(request):
     return render(request, 'admin_carta.html')
-
+@user_passes_test(es_admin)
 def go_admin_contrato(request):
     return render(request, 'admin_contrato.html')
 
@@ -109,7 +110,7 @@ def tipos_subcategorias_comidas(request):
     tipo = request.GET.get('tipo')
     datos = list(Productos.objects.filter(categoria=categoria, tipo_categoria=tipo).values_list('subcategoria', flat=True).distinct())
     return JsonResponse(datos, safe=False)
-
+@user_passes_test(es_admin)
 def formularioEmpleados(request):
     if request.method == 'POST':
         form = FormularioEmpleado(request.POST)
