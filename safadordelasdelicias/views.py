@@ -62,6 +62,29 @@ def go_cocina(request):
 
     return render(request, 'cocina.html', {'lineas_pedidos': datos_pedidos})
 
+
+def go_barra(request):
+
+    en_proceso = LineaPedido.objects.filter(estado="En Proceso").exclude(id_producto__categoria=CategoriaProducto.comida
+    ).select_related('id_producto', 'id_pedido')
+
+    pendientes = LineaPedido.objects.filter(estado="Pendiente").exclude(id_producto__categoria=CategoriaProducto.comida
+    ).select_related('id_producto', 'id_pedido')
+
+    lineas_pedidos = list(en_proceso) + list(pendientes)
+
+    datos_pedidos = []
+    for linea in lineas_pedidos:
+        datos_pedidos.append({
+            'id_linea_pedido': linea.id_linea_pedido,
+            'nombre_producto': linea.id_producto.nombre,
+            'numero_mesa': linea.id_pedido.id_mesa.id,
+            'cantidad': linea.cantidad_producto,
+            'descripcion': linea.id_producto.descripcion,
+            'estado': linea.estado,
+        })
+
+    return render(request, 'barra.html', {'lineas_pedidos': datos_pedidos})
 def go_carta(request):
     return render(request, 'carta.html')
 

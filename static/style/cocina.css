@@ -29,6 +29,10 @@ body{
     gap: 0.5rem;
 }
 
+.nombre-restaurante>img{
+    width: 35px;
+}
+
 .fecha{
     font-size: 20px;
     margin-top: 4px;
