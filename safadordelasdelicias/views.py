@@ -59,7 +59,6 @@ def go_login(request):
                 except Exception:
                     return render(request, '404.html', status=404)
                 return redirect('home_page')
-            print(empleados)
     else:
         form = LoginForm()
 
