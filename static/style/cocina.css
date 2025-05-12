@@ -29,6 +29,10 @@ body{
     gap: 0.5rem;
 }
 
+.nombre-restaurante>img{
+    width: 35px;
+}
+
 .fecha{
     font-size: 20px;
     margin-top: 4px;
@@ -36,11 +40,13 @@ body{
 }
 
 .comandas{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 2rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: hidden;
+    min-width: auto;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 .card-comanda{
@@ -50,8 +56,8 @@ body{
     align-items: flex-start;
     justify-content: center;
 
-    width: fit-content;
-    min-width: 400px;
+    min-width: auto;
+    max-width: 500px;
     height: fit-content;
 
     background-color: var(--bs-blanco-roto);
@@ -78,7 +84,9 @@ body{
 }
 
 .header-comanda-nombre{
-    font-size:25px ;
+    font-size: 25px;
+    max-width: 70%;
+    text-align: left;
 }
 
 .header-comanda-mesa{
@@ -102,17 +110,40 @@ body{
 }
 
 .comanda-descripcion{
+    text-align: left;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .comanda-descripcion-cantidad{
     color: var(--bs-naranja-primario);
     font-weight: bold;
     font-size: 40px;
+}
+
+.comanda-boton-enproceso{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.comanda-boton-enproceso>button{
+    height: 50px;
+    background-color: var(--bs-marron-oscuro);
+    color: white;
+
+    border-radius: 10px;
+    border: 0;
+    font-size: large;
+    cursor: pointer;
+}
+
+.comanda-boton-enproceso>button:hover{
+    color: var(--bs-marron-oscuro);
+    background-color: var(--bs-marron-claro);
 }
 
 .comanda-boton-preparado{

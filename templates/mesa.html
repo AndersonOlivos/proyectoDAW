@@ -135,9 +135,15 @@
                     <h5 class="modal-title" id="modalPedirCuentaLabel">Método de pago</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <p>¿Está seguro que desea pedir la cuenta para esta mesa?</p>
-                    <p>Total a pagar: <span id="total-cuenta"></span> €</p>
+                <div class="modal-body" id="modal-body-metodo-pago">
+                    <button class="div-metodo-pago">
+                        <img src="{% static 'image/efectivo.png' %}">
+                        <h4>Efectivo</h4>
+                    </button>
+                    <button class="div-metodo-pago">
+                        <img src="{% static 'image/tarjeta.png' %}">
+                        <h4>Tarjeta</h4>
+                    </button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

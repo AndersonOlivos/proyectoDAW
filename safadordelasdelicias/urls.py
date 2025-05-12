@@ -9,7 +9,8 @@ urlpatterns = [
     path('carta/', cargar_carta, name='carta'),
     path('mesas/', go_mesas, name='mesas'),
     path('mesas/mesa/<int:id>/',go_mesa, name='mesa'),
-    path('mesas/cocina', go_cocina, name='cocina'),
+    path('cocina/', go_cocina, name='cocina'),
+    path('barra/', go_barra, name='barra'),
     path('carta/', go_carta, name='carta'),
     path('login/', go_login, name='login'),
     path('admin/', go_admin, name='admin'),
@@ -23,6 +24,7 @@ urlpatterns = [
     path('cargar_historial_pedido/', cargar_historial_pedido, name="cargar_historial_pedido"),
 
     path('formularioEmpleado/',formularioEmpleados,name='formularioEmpleado'),
+    path('actualizar_linea_pedido/', actualizar_linea_pedido, name='actualizar_linea_pedido')
 ]
 
 handler404 = custom_404
